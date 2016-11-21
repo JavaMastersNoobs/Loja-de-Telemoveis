@@ -22,7 +22,7 @@ public class LojaDeTelemoveis {
         Tech.setmarca("wt");
         Tech.setmodelo("arroz");
         Tech.setano(2014);
-        Tech.setprocessador("SD 801");
+        Tech.setprocessador("SD 801"); lol
         Tech.setrom(16);
         Tech.setram(2);
         Tech.settraseira(13);
