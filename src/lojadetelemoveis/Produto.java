@@ -36,83 +36,83 @@ public class Produto {
     this.so=so;
     this.preco=preco;                 
    }
-   public void setmarca(String marca)
+   public void setMarca(String marca)
         {
             this.marca=marca;
         }
-   public String getmarca()
+   public String getMarca()
         {
             return this.marca;
         }
-   public void setmodelo(String modelo)
+   public void setModelo(String modelo)
         {
             this.modelo=modelo;
         }
-   public String getmodelo()
+   public String getModelo()
         {
             return this.modelo;
         }
-   public void setano(int ano)
+   public void setAno(int ano)
         {
             this.ano=ano;
         }
-   public int getano()
+   public int getAno()
         {
             return this.ano;
         }
-   public void setprocessador(String processador)
+   public void setProcessador(String processador)
         {
             this.processador=processador;
         }
-   public String getprocessador()
+   public String getProcessador()
         {
             return this.processador;
         }
-   public void setrom(int rom)
+   public void setRom(int rom)
         {
             this.rom=rom;
         }
-   public int getrom()
+   public int getRom()
         {
             return this.rom;
         }
-   public void setram(int ram)
+   public void setRam(int ram)
         {
             this.ram=ram;
         }
-   public int getram()
+   public int getRam()
         {
             return this.ram;
         }
-   public void settraseira(int traseira)
+   public void setTraseira(int traseira)
         {
             this.traseira=traseira;
         }
-   public int gettraseira()
+   public int getTraseira()
         {
             return this.traseira;
         }
-   public void setfrontal(int frontal)
+   public void setFrontal(int frontal)
         {
             this.frontal=frontal;
         }
-   public int getecra()
+   public int getEcra()
         {
             return this.ecra;
         }
-   public void setso(String so)
+   public void setSo(String so)
         {
             this.so=so;
         }
-   public String getso()
+   public String getSo()
         {
             return this.so;
         }
-   public void setpreco(double preco)
+   public void setPreco(double preco)
         {
             this.preco=preco;
         }
-   public double getpreco()
+   public double getPreco()
         {
             return this.preco;
         }
