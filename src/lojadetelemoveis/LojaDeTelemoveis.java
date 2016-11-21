@@ -18,17 +18,17 @@ public class LojaDeTelemoveis {
         System.out.println("test");
         System.out.println("test2");
         System.out.println("Final test");
-        Produto Tech = new Produto();
-        Tech.setmarca("wt");
-        Tech.setmodelo("arroz");
-        Tech.setano(2014);
-        Tech.setprocessador("SD 801"); lol
-        Tech.setrom(16);
-        Tech.setram(2);
-        Tech.settraseira(13);
-        Tech.setfrontal(5);
-        Tech.setso("Android 4.4 KitKat");
-        Tech.setpreco(199);
+        Produto Tech = new Produto("samsung", "arroz", 2014, "lol", 12,16, 3,16,13, "toto", 100);
+        Tech.setMarca("wt");
+        Tech.setModelo("arroz");
+        Tech.setAno(2014);
+        Tech.setProcessador("SD 801"); 
+        Tech.setRom(16);
+        Tech.setRam(2);
+        Tech.setTraseira(13);
+        Tech.setFrontal(5);
+        Tech.setSo("Android 4.4 KitKat");
+        Tech.setPreco(199);
         
     }
     
