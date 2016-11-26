@@ -29,6 +29,7 @@ public class LojaDeTelemoveis {
         Tech.setFrontal(5);
         Tech.setSo("Android 4.4 KitKat");
         Tech.setPreco(199);
+        /*not*/
         
     }
     
