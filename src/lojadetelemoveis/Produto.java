@@ -117,7 +117,7 @@ public class Produto {
         }
    public void setEcra(int ecra)
         {
-            this.ecra=ecra;
+           this.ecra=ecra;
         }
    public int getEcra()
         {

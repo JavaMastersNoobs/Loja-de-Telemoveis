@@ -63,7 +63,7 @@ public class Cliente {
     {
         this.morada = morada;
     }
-    public void setCompras(ArrayList<Produto> c)
+     public void setCompras(ArrayList<Produto> c)
     {
         compras = (ArrayList<Produto>) c.clone();
     }
