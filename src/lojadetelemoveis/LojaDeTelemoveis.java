@@ -15,6 +15,9 @@ public class LojaDeTelemoveis {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        System.out.println("f");
+        System.out.println("lol");
+        System.out.println("lol 2 pq sim");
         System.out.println("test");
         System.out.println("test2");
         System.out.println("Final test");
