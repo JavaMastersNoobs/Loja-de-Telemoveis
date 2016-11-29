@@ -5,20 +5,64 @@
  */
 package lojadetelemoveis;
 
-/**
- *
- * @author andra
- */
-public class LojaDeTelemoveis {
+import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.ListIterator;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.*;
+import java.util.Scanner;
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        System.out.println("test");
-        System.out.println("test2");
-        System.out.println("Final test");
-        Produto Tech = new Produto("samsung", "arroz", 2014, "lol", 12,16, 3,16,13, "toto", 100);
+public class LojaDeTelemoveis 
+{
+
+    public static void main(String[] args) 
+    {
+        System.out.println("Bem vindo á loja de telemóveis\n\n");/*give another name*/
+        
+            Scanner keyboard = new Scanner(System.in);
+            System.out.print("Enter an inventory filename: ");
+            String fname = keyboard.nextLine();
+            ArrayList<Produto> produtos = loadProdutos (fname);
+            displayProdutos(produtos);
+            
+    public static ArrayList<Produto> loadProduto(String fname) {
+    ArrayList<Produto> produtos = new ArrayList<Produto>();
+    try {
+        Scanner inFile = new Scanner(new File(fname));
+        while (inFile.hasNext()) {
+            Produto pr = new Produto("samsung", "arroz", 2014, "lol", 12,16, 3,16,13, "toto", 100);
+            pr.setMarca(inFile.nextLine());
+            pr.setModelo(inFile.nextLine());
+            pr.setAno(inFile.nextInt());
+            pr.setProcessador(inFile.nextLine());
+            pr.setRom(inFile.nextInt());
+            pr.setRam(inFile.nextInt());
+            pr.setTraseira(inFile.nextInt());
+            pr.setFrontal(inFile.nextInt());
+            pr.setSo(inFile.nextLine());
+            pr.setPreco(inFile.nextInt());
+            
+            int rating;
+            while(inFile.nextInt() != -1){
+                pr.addUserRating(rating);
+            }
+            produtos.add(pr);
+        }
+        inFile.close();
+    }
+    catch(IOException e) 
+    {
+        System.out.println("ERROR: "+e);
+    }
+    return produtos;
+}        
+            
+       /* Produto Tech = new Produto("samsung", "arroz", 2014, "lol", 12,16, 3,16,13, "toto", 100);
         Tech.setMarca("wt");
         Tech.setModelo("arroz");
         Tech.setAno(2014);
@@ -29,8 +73,7 @@ public class LojaDeTelemoveis {
         Tech.setFrontal(5);
         Tech.setSo("Android 4.4 KitKat");
         Tech.setPreco(199);
-        /*not*/
-        
-    }
-    
+        */
 }
+    
+

@@ -1,15 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lojadetelemoveis;
 
-/**
- *
- * @author andra
- */
-public class Produto {
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.*;
+
+public class Produto /*implements Serializable*/ {
    private String marca;
    private String modelo;
    private int ano;
@@ -21,6 +23,7 @@ public class Produto {
    private int ecra; 
    private String so;
    private double preco;
+   private ArrayList<Integer> userRatings;
 
    public Produto(String marca, String modelo, int ano, String processador, int rom, int ram, int traseira, int frontal, int ecra, String so, int preco)
    {
@@ -34,7 +37,8 @@ public class Produto {
     this.frontal=frontal;
     this.ecra=ecra;
     this.so=so;
-    this.preco=preco;                 
+    this.preco=preco;   
+    userRatings = new ArrayList<Integer>();
    }
    public void setMarca(String marca)
         {
@@ -100,6 +104,10 @@ public class Produto {
         {
             return this.ecra;
         }
+   public void setEcra(int Ecra)
+        {
+            this.ecra=ecra;
+        }
    public void setSo(String so)
         {
             this.so=so;
@@ -116,7 +124,53 @@ public class Produto {
         {
             return this.preco;
         }
-   
-   
-}
-    
+    /*
+     * addUserRating
+     * NOTE: Each individual rating is stored with the product, so you need to maintain a list
+     * of user ratings.  This method should append a new rating to the end of that list
+     * @param rating - the new rating to add to this product
+     */
+    public void addUserRating(int rating) {
+        userRatings.add(rating);
+    }
+    /*
+     * getUserRating
+     *  NOTE:  See note on addUserRating above.  This method should be written to allow you
+     *  to access an individual value from the list of user ratings 
+     * @param index - the index of the rating we want to see
+     * @return the rating indexed by the value index
+     */
+    public int getUserRating(int index) {
+        return userRatings.get(index);
+    }
+
+    /*
+     * getUserRatingCount
+     *  NOTE: See note on addUserRating above.  This method should be written to return
+     *  the total number of ratings this product has associated with it
+     * @return the number of ratings associated with this product
+     */
+    public int getUserRatingCount() {
+        return userRatings.size();
+    }
+
+    /*
+     * getAvgUserRating
+     *  NOTE: see note on addUserRating above.  This method should be written to compute
+     *  the average user rating on demand from a stored list of ratings.
+     * @return the average rating for this product as a whole integer value (use integer math)
+     */
+    public int getAvgUserRating() {
+        int sum = 0;
+        if(userRatings.size() > 0){
+            for (int i = 0; i < userRatings.size(); i++){
+                sum += userRatings.get(i);
+            }
+            return sum / userRatings.size();
+        }
+
+        else return 0;
+    }
+
+
+    }
