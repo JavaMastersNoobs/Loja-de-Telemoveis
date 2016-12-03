@@ -26,13 +26,13 @@ public class LojaDeTelemoveis {
         System.out.print("Enter an inventory filename: ");
         String fname = keyboard.nextLine();
         ArrayList<Produto> telemoveis = loadTelemoveis(fname);
-        displayTelemoveis(telemoveis);
+        System.out.println(telemoveis.toString());
     }
 
     public static ArrayList<Produto> loadTelemoveis(String fname) {
         ArrayList<Produto> telemoveis = new ArrayList<Produto>();
         try {
-            Scanner inFile = new Scanner(new File(fname));
+            Scanner inFile = new Scanner(new File("produto.txt"));
             while (inFile.hasNext()) {
                 Produto pr = new Produto(); //"samsung", "arroz", 2014, "lol", 12, 16, 3, 16, 13, "toto", 100
                 pr.setMarca(inFile.nextLine());
@@ -46,9 +46,9 @@ public class LojaDeTelemoveis {
                 pr.setSo(inFile.nextLine());
                 pr.setPreco(inFile.nextInt());
 
-                while (inFile.nextInt() != -1) {
+                /*while (inFile.hasNext()) {
                     pr.addUserRating(inFile.nextInt());
-                }
+                }*/
                 telemoveis.add(pr);
             }
             inFile.close();
