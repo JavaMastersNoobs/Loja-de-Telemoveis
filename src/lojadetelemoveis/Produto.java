@@ -198,4 +198,21 @@ public class Produto /*implements Serializable*/ {
         }
     }
 
+    public String toString() {
+        String s = "";
+        s += "Marca:" + marca + "\n";
+        s += "Modelo:" + modelo + "\n";
+        s += "Ano:" + ano + "\n";
+        s += "Processador" + processador + "\n";
+        s += "ROM:" + rom + "\n";
+        s += "RAM:" + ram + "\n";
+        s += "Traseira:" + traseira + "\n";
+        s += "Frontal:" + frontal + "\n";
+        s += "Ecrã:" + ecra + "\n";
+        s += "SO:" + so + "\n";
+        s += "Preço:" + preco + "\n";
+        s += "Quantidade:" + quantity + "\n";
+        s += "UserRatings:" + userRatings.toString() + "\n";
+        return s;
+    }
 }
