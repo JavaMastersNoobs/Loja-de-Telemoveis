@@ -17,11 +17,12 @@ public class Produto /*implements Serializable*/ {
     private String modelo;
     private int ano;
     private String processador;
-    private int rom;
-    private int ram;
-    private int traseira;
-    private int frontal;
-    private int ecra;
+    private String bateria;
+    private String minterna;
+    private String ram;
+    private String traseira;
+    private String frontal;
+    private String ecra;
     private String so;
     private double preco;
     private int quantity;
@@ -32,13 +33,14 @@ public class Produto /*implements Serializable*/ {
         modelo = "";
         ano = 0;
         processador = "";
-        rom = 0;
-        ram = 0;
-        traseira = 0;
-        frontal = 0;
-        ecra = 0;
+        bateria = "";
+        minterna = "";
+        ram = "";
+        traseira = "";
+        frontal = "";
+        ecra = "";
         so = "";
-        preco = 0;
+        preco = 0.0;
         quantity = 0;
         userRatings = new ArrayList<Integer>();
 
@@ -88,40 +90,48 @@ public class Produto /*implements Serializable*/ {
     public String getProcessador() {
         return processador;
     }
-
-    public void setRom(int rom) {
-        this.rom = rom;
+    
+    public void setBateria(String bateria) {
+        this.bateria = bateria;
     }
 
-    public int getRom() {
-        return rom;
+    public String getBateria() {
+        return bateria;
     }
 
-    public void setRam(int ram) {
+    public void setMinterna(String minterna) {
+        this.minterna = minterna;
+    }
+
+    public String getMinterna() {
+        return minterna;
+    }
+
+    public void setRam(String ram) {
         this.ram = ram;
     }
 
-    public int getRam() {
+    public String getRam() {
         return ram;
     }
 
-    public void setTraseira(int traseira) {
+    public void setTraseira(String traseira) {
         this.traseira = traseira;
     }
 
-    public int getTraseira() {
+    public String getTraseira() {
         return traseira;
     }
 
-    public void setFrontal(int frontal) {
+    public void setFrontal(String frontal) {
         this.frontal = frontal;
     }
 
-    public void setEcra(int ecra) {
+    public void setEcra(String ecra) {
         this.ecra = ecra;
     }
 
-    public int getEcra() {
+    public String getEcra() {
         return ecra;
     }
 
@@ -204,7 +214,8 @@ public class Produto /*implements Serializable*/ {
         s += "Modelo:" + modelo + "\n";
         s += "Ano:" + ano + "\n";
         s += "Processador" + processador + "\n";
-        s += "ROM:" + rom + "\n";
+        s += "Bateria" + bateria + "\n";
+        s += "Memória Interna:" + minterna + "\n";
         s += "RAM:" + ram + "\n";
         s += "Traseira:" + traseira + "\n";
         s += "Frontal:" + frontal + "\n";

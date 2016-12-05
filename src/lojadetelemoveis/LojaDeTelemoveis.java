@@ -39,11 +39,12 @@ public class LojaDeTelemoveis {
                 pr.setModelo(inFile.next());
                 pr.setAno(inFile.nextInt());
                 pr.setProcessador(inFile.next());
-                pr.setRom(inFile.nextInt());
-                pr.setRam(inFile.nextInt());
-                pr.setTraseira(inFile.nextInt());
-                pr.setFrontal(inFile.nextInt());
-                pr.setEcra(inFile.nextInt());
+                pr.setBateria(inFile.next());
+                pr.setMinterna(inFile.next());
+                pr.setRam(inFile.next());
+                pr.setTraseira(inFile.next());
+                pr.setFrontal(inFile.next());
+                pr.setEcra(inFile.next());
                 pr.setSo(inFile.next());
                 pr.setPreco(inFile.nextDouble());
                 pr.setQuantity(inFile.nextInt());
