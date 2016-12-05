@@ -117,7 +117,7 @@ public class Produto /*implements Serializable*/ {
         this.frontal = frontal;
     }
 
-    public void setEcra(int Ecra) {
+    public void setEcra(int ecra) {
         this.ecra = ecra;
     }
 

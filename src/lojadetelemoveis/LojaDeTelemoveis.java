@@ -32,19 +32,21 @@ public class LojaDeTelemoveis {
     public static ArrayList<Produto> loadTelemoveis(String fname) {
         ArrayList<Produto> telemoveis = new ArrayList<Produto>();
         try {
-            Scanner inFile = new Scanner(new File("produto.txt"));
+            Scanner inFile = new Scanner(new File(fname));
             while (inFile.hasNext()) {
                 Produto pr = new Produto(); //"samsung", "arroz", 2014, "lol", 12, 16, 3, 16, 13, "toto", 100
-                pr.setMarca(inFile.nextLine());
-                pr.setModelo(inFile.nextLine());
+                pr.setMarca(inFile.next());
+                pr.setModelo(inFile.next());
                 pr.setAno(inFile.nextInt());
-                pr.setProcessador(inFile.nextLine());
+                pr.setProcessador(inFile.next());
                 pr.setRom(inFile.nextInt());
                 pr.setRam(inFile.nextInt());
                 pr.setTraseira(inFile.nextInt());
                 pr.setFrontal(inFile.nextInt());
-                pr.setSo(inFile.nextLine());
-                pr.setPreco(inFile.nextInt());
+                pr.setEcra(inFile.nextInt());
+                pr.setSo(inFile.next());
+                pr.setPreco(inFile.nextDouble());
+                pr.setQuantity(inFile.nextInt());
 
                 /*while (inFile.hasNext()) {
                     pr.addUserRating(inFile.nextInt());
