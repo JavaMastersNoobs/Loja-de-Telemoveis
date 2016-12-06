@@ -26,6 +26,7 @@ public class Produto /*implements Serializable*/ {
     private String so;
     private double preco;
     private int quantity;
+    private long id;
     private ArrayList<Integer> userRatings;
 
     public Produto() { //String marca, String modelo, int ano, String processador, int rom, int ram, int traseira, int frontal, int ecra, String so, int preco
@@ -42,6 +43,7 @@ public class Produto /*implements Serializable*/ {
         so = "";
         preco = 0.0;
         quantity = 0;
+        id = 0;
         userRatings = new ArrayList<Integer>();
 
         /*this.marca = marca;
@@ -158,7 +160,14 @@ public class Produto /*implements Serializable*/ {
     public int getQuantity() {
         return quantity;
     }
+    
+     public void setId(long id){
+        this.id = id;
+    }
 
+    public long getId() {
+        return id;
+    }
     /*
      * addUserRating
      * NOTE: Each individual rating is stored with the product, so you need to maintain a list
@@ -223,6 +232,7 @@ public class Produto /*implements Serializable*/ {
         s += "SO:" + so + "\n";
         s += "Preço:" + preco + "\n";
         s += "Quantidade:" + quantity + "\n";
+        s += "Identificador:"+ id + "\n";
         s += "UserRatings:" + userRatings.toString() + "\n";
         return s;
     }

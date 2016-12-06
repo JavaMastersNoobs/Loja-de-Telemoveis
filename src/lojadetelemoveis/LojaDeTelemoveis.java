@@ -27,8 +27,12 @@ public class LojaDeTelemoveis {
         String fname = keyboard.nextLine();
         ArrayList<Produto> telemoveis = loadTelemoveis(fname);
         System.out.println(telemoveis.toString());
+        
+        
+        
     }
-
+    
+    
     public static ArrayList<Produto> loadTelemoveis(String fname) {
         ArrayList<Produto> telemoveis = new ArrayList<Produto>();
         try {
