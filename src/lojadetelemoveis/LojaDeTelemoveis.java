@@ -27,12 +27,9 @@ public class LojaDeTelemoveis {
         String fname = keyboard.nextLine();
         ArrayList<Produto> telemoveis = loadTelemoveis(fname);
         System.out.println(telemoveis.toString());
-        
-        
-        
+
     }
-    
-    
+
     public static ArrayList<Produto> loadTelemoveis(String fname) {
         ArrayList<Produto> telemoveis = new ArrayList<Produto>();
         try {
@@ -42,16 +39,17 @@ public class LojaDeTelemoveis {
                 pr.setMarca(inFile.next());
                 pr.setModelo(inFile.next());
                 pr.setAno(inFile.nextInt());
-                pr.setProcessador(inFile.next());
-                pr.setBateria(inFile.next());
-                pr.setMinterna(inFile.next());
-                pr.setRam(inFile.next());
-                pr.setTraseira(inFile.next());
-                pr.setFrontal(inFile.next());
-                pr.setEcra(inFile.next());
-                pr.setSo(inFile.next());
+                pr.setProcessador(inFile.nextLine());
+                pr.setBateria(inFile.nextLine());
+                pr.setMinterna(inFile.nextLine());
+                pr.setRam(inFile.nextLine());
+                pr.setTraseira(inFile.nextLine());
+                pr.setFrontal(inFile.nextLine());
+                pr.setEcra(inFile.nextLine());
+                pr.setSo(inFile.nextLine());
                 pr.setPreco(inFile.nextDouble());
                 pr.setQuantity(inFile.nextInt());
+                pr.setId(inFile.nextInt());
 
                 /*while (inFile.hasNext()) {
                     pr.addUserRating(inFile.nextInt());
