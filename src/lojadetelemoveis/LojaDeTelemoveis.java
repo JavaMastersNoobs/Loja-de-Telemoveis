@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package lojadetelemoveis;
-
+import static lojadetelemoveis.Ler.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.ListIterator;
@@ -22,13 +22,12 @@ public class LojaDeTelemoveis {
     public static void main(String[] args) {
         System.out.println("Bem vindo à loja de telemóveis\n\n");/*give another name*/
 
-        Scanner keyboard = new Scanner(System.in);
+        //Scanner keyboard = new Scanner(System.in);
         /*System.out.print("Enter an inventory filename: ");
         String fname = keyboard.nextLine();
         ArrayList<Produto> telemoveis = loadTelemoveis(fname);
         System.out.println(telemoveis.toString());*/
         long auxlong;
-        int auxint;
         Produto p = new Produto();
         Produto q = new Produto(); q.setId(25);
         Loja l = new Loja("TELEMOVEIS");
@@ -40,8 +39,8 @@ public class LojaDeTelemoveis {
                     break;
                 case 2:
                     System.out.print("Introduza o identificador do telemóvel:");
-                    auxlong = keyboard.nextLong();
-                    if(l.verificar(auxlong) == true)
+                    auxlong = umLong();
+                    if(l.verificarTelemovel(auxlong) == true)
                     {
                         l.getTelemovel().get(0).descidaEstoque(1);
                     }
@@ -53,18 +52,11 @@ public class LojaDeTelemoveis {
                     l.adicionarTelemovel(p);
                     l.adicionarTelemovel(q);
                     break;
-                case 5:
+                case 5://done
                     l.setTelemovel(modificarProduto(l));
                     break;
-                case 6:
-                    System.out.print("Intoduza o identificador do telemóvel a ser removido:");
-                    auxlong = keyboard.nextLong();
-                    try{
-                        l.removerTelemovel(auxlong);
-                    }
-                    catch (NumberFormatException e){
-                    System.out.println("Não é um valor inteiro!");
-                    }
+                case 6://done
+                    l.removerTelemovel(removerProduto(l));
                     break;
             }
             opcao = menu();
@@ -72,8 +64,6 @@ public class LojaDeTelemoveis {
         
     }
     
-    
-
     public static ArrayList<Produto> loadTelemoveis(String fname) {
         ArrayList<Produto> telemoveis = new ArrayList<Produto>();
         try {
@@ -109,30 +99,30 @@ public class LojaDeTelemoveis {
     
     public static ArrayList<Produto> modificarProduto(Loja l)
     {
-        Scanner keyboard = new Scanner(System.in);
         long auxlong;
-        int auxint, opcao= -1;
+        int auxint, opcao = -1;
         double auxdouble;
-        System.out.print("Introduza o identificador do telemovel a ser modificado:");
-        auxlong = keyboard.nextLong();
-        while(l.verificar(auxlong) != true)
+        System.out.print("Introduza o identificador do telemóvel a ser modificado:");
+        auxlong = umLong();
+        while(l.verificarTelemovel(auxlong) != true)
         {
+            System.out.println("Identificador não encontrado!");
             System.out.println("1 - Modificar produto");
             System.out.println("0 - Voltar ao menu principal");
-            System.out.println("Introduza uma das opções:");
-            opcao = keyboard.nextInt();
+            System.out.print("Introduza uma das opções:");
+            opcao = umInt();
             if(opcao == 0)
             {
                 return (l.getTelemovel());
             }
             else if(opcao >1 || opcao <0)
             {
-                System.out.println("Deve introuzir uma das opções listadas!");
+                System.out.println("Deve introduzir uma das opções listadas!");
             }
             else
             {
                 System.out.print("Introduza o identificador do telemovel a ser modificado:");
-                auxlong = keyboard.nextLong();
+                auxlong = umLong();
             }  
         }
         for(int i=0; i<l.getTelemovel().size(); i++)
@@ -140,13 +130,13 @@ public class LojaDeTelemoveis {
             if(l.getTelemovel().get(i).getId() == auxlong)
             {
                 opcao = -1;
-                while (opcao <0 || opcao >2)
+                while(opcao <0 || opcao >2)
                 {
                     System.out.println("1 - Modificar preço");
                     System.out.println("2 - Aumentar quantidade em stock");
                     System.out.println("0 - Voltar ao menu principal");
-                    System.out.println("Introduza uma das opções:");
-                    opcao = keyboard.nextInt();
+                    System.out.print("Introduza uma das opções:");
+                    opcao = umInt();
                     if(opcao == 0)
                     {
                         return (l.getTelemovel());
@@ -157,28 +147,41 @@ public class LojaDeTelemoveis {
                     }
                      else if(opcao == 1)
                     {
-                        System.out.println("Introduza o novo valor do telemóvel:");
-                        auxdouble = keyboard.nextDouble();
+                        System.out.print("Introduza o novo preço do telemóvel:");
+                        auxdouble = umDouble();
                         l.getTelemovel().get(i).setPreco(auxdouble);
-                        System.out.println("Valor modificado com sucesso!");
+                        System.out.println("Preço modificado com sucesso!");
                     }
                     else
                     {
-                        System.out.println("Introduza valor a ser aumentado no stock:");
-                        auxint = keyboard.nextInt();
+                        System.out.print("Introduza valor a ser aumentado no stock:");
+                        auxint = umInt();
                         l.getTelemovel().get(i).aumentarEstoque(auxint);
                         System.out.println("Valor aumentado com sucesso!");
                     }
-                    
                 }
             }
-            return l.getTelemovel();
         }
         return l.getTelemovel();          
     }
     
+    public static long removerProduto(Loja l)
+    {
+        System.out.print("Intoduza o identificador do telemóvel a ser removido:");
+        long auxlong = umLong();
+        if(l.verificarTelemovel(auxlong) == true)
+        {
+            System.out.println("Produto removido com sucesso!");
+        }
+        else
+        {
+            System.out.println("O produto não foi encontrado!");
+        }
+        return auxlong;
+    }
+    
     public static int menu (){
-        Scanner keyboard = new Scanner(System.in);
+        System.out.println("==============================================================");
 	System.out.println("1 - Telemóveis");
 	System.out.println("2 - Comprar telemóvel");
 	System.out.println("3 - Factura");
@@ -187,7 +190,12 @@ public class LojaDeTelemoveis {
         System.out.println("6 - Remover telemóvel");
         System.out.println("0 - Sair");
         System.out.print("Introduza uma das opções:");
-        int opcao = keyboard.nextInt();
+        int opcao = umInt();
+        System.out.println("==============================================================");
+        if(opcao<0 || opcao>6)
+        {
+            System.out.println("Deve introduzir uma das opções listadas!");
+        }
 	return opcao;
     }
     

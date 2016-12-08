@@ -53,7 +53,7 @@ public class Loja {
         this.facturas = facturas;
     }
 
-    public boolean verificar(long id) {
+    public boolean verificarTelemovel(long id) {
         boolean x;
         x = false;
         for (int i = 0; i <telemovel.size(); i++) {
@@ -62,9 +62,8 @@ public class Loja {
         return x;
 
     }
-
     public void adicionarTelemovel(Produto p) {
-        if (!verificar(p.getId())) {
+        if (!verificarTelemovel(p.getId())) {
             telemovel.add(p);
         }
     }
