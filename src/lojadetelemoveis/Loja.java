@@ -12,7 +12,7 @@ public class Loja {
     private String nome;
     private ArrayList<Produto> telemovel;
     private ArrayList<Cliente> clientes;
-    private ArrayList<Fatura> faturas;
+    private ArrayList<Factura> facturas;
 
     public String getNome() {
         return nome;
@@ -38,12 +38,12 @@ public class Loja {
         this.clientes = clientes;
     }
 
-    public ArrayList<Fatura> getFaturas() {
-        return faturas;
+    public ArrayList<Factura> getFacturas() {
+        return facturas;
     }
 
-    public void setFaturas(ArrayList<Fatura> faturas) {
-        this.faturas = faturas;
+    public void setFacturas(ArrayList<Factura> facturas) {
+        this.facturas = facturas;
     }
 
     public boolean verifica(long id) {
