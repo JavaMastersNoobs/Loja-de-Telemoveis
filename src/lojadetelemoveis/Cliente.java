@@ -16,7 +16,7 @@ public class Cliente {
     private int idade;
     private long NIF;
     private String morada;
-    private ArrayList<Produto> compras;
+    private ArrayList<Factura> facturas;
  
     public Cliente(String nome, int idade, long NIF, String morada)
     {
@@ -24,7 +24,7 @@ public class Cliente {
         this.idade = idade;
         this.NIF = NIF;
         this.morada = morada;
-        compras = new ArrayList<Produto> ();
+        facturas = new ArrayList<Factura> ();
     }
     
     public String getNome()
@@ -43,9 +43,9 @@ public class Cliente {
     {
         return morada;
     }
-    public ArrayList<Produto> getCompras()
+    public ArrayList<Factura> getFacturas()
     {
-        return compras;
+        return facturas;
     }
     public void setNome(String nome)
     {
@@ -63,8 +63,8 @@ public class Cliente {
     {
         this.morada = morada;
     }
-     public void setCompras(ArrayList<Produto> c)
+     public void setFacturas(ArrayList<Factura> f)
     {
-        compras = (ArrayList<Produto>) c.clone();
+        facturas = (ArrayList<Factura>) f.clone();
     }
 }

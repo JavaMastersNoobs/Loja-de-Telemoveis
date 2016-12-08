@@ -20,31 +20,59 @@ import java.io.*;
 public class LojaDeTelemoveis {
 
     public static void main(String[] args) {
-        System.out.println("Bem vindo á loja de telemóveis\n\n");/*give another name*/
+        System.out.println("Bem vindo à loja de telemóveis\n\n");/*give another name*/
 
         Scanner keyboard = new Scanner(System.in);
-        System.out.print("Enter an inventory filename: ");
+        /*System.out.print("Enter an inventory filename: ");
         String fname = keyboard.nextLine();
         ArrayList<Produto> telemoveis = loadTelemoveis(fname);
-        System.out.println(telemoveis.toString());
-
-        System.out.println("test");
-        System.out.println("test2");
-        System.out.println("Final test");
-        Produto Tech = new Produto();
-        Tech.setmarca("wt");
-        Tech.setmodelo("arroz");
-        Tech.setano(2014);
-        Tech.setprocessador("SD 801");
-        Tech.setrom(16);
-        Tech.setram(2);
-        Tech.settraseira(13);
-        Tech.setfrontal(5);
-        Tech.setso("Android 4.4 KitKat");
-        Tech.setpreco(199);
-        fhfhfg;
+        System.out.println(telemoveis.toString());*/
+        long auxlong;
+        int auxint;
+        Produto p = new Produto();
+        Produto q = new Produto(); q.setId(25);
+        Loja l = new Loja("TELEMOVEIS");
+        int opcao = menu();
+        while(opcao != 0){
+            switch(opcao){
+                case 1:
+                    System.out.println(l.getTelemovel().toString());
+                    break;
+                case 2:
+                    System.out.print("Introduza o identificador do telemóvel:");
+                    auxlong = keyboard.nextLong();
+                    if(l.verificar(auxlong) == true)
+                    {
+                        l.getTelemovel().get(0).descidaEstoque(1);
+                    }
+                    break;
+                case 3:
+                    //l.getFatura();
+                    break;
+                case 4: 
+                    l.adicionarTelemovel(p);
+                    l.adicionarTelemovel(q);
+                    break;
+                case 5:
+                    l.setTelemovel(modificarProduto(l));
+                    break;
+                case 6:
+                    System.out.print("Intoduza o identificador do telemóvel a ser removido:");
+                    auxlong = keyboard.nextLong();
+                    try{
+                        l.removerTelemovel(auxlong);
+                    }
+                    catch (NumberFormatException e){
+                    System.out.println("Não é um valor inteiro!");
+                    }
+                    break;
+            }
+            opcao = menu();
+        }
         
     }
+    
+    
 
     public static ArrayList<Produto> loadTelemoveis(String fname) {
         ArrayList<Produto> telemoveis = new ArrayList<Produto>();
@@ -78,7 +106,95 @@ public class LojaDeTelemoveis {
         }
         return telemoveis;
     }
-
+    
+    public static ArrayList<Produto> modificarProduto(Loja l)
+    {
+        Scanner keyboard = new Scanner(System.in);
+        long auxlong;
+        int auxint, opcao= -1;
+        double auxdouble;
+        System.out.print("Introduza o identificador do telemovel a ser modificado:");
+        auxlong = keyboard.nextLong();
+        while(l.verificar(auxlong) != true)
+        {
+            System.out.println("1 - Modificar produto");
+            System.out.println("0 - Voltar ao menu principal");
+            System.out.println("Introduza uma das opções:");
+            opcao = keyboard.nextInt();
+            if(opcao == 0)
+            {
+                return (l.getTelemovel());
+            }
+            else if(opcao >1 || opcao <0)
+            {
+                System.out.println("Deve introuzir uma das opções listadas!");
+            }
+            else
+            {
+                System.out.print("Introduza o identificador do telemovel a ser modificado:");
+                auxlong = keyboard.nextLong();
+            }  
+        }
+        for(int i=0; i<l.getTelemovel().size(); i++)
+        {
+            if(l.getTelemovel().get(i).getId() == auxlong)
+            {
+                opcao = -1;
+                while (opcao <0 || opcao >2)
+                {
+                    System.out.println("1 - Modificar preço");
+                    System.out.println("2 - Aumentar quantidade em stock");
+                    System.out.println("0 - Voltar ao menu principal");
+                    System.out.println("Introduza uma das opções:");
+                    opcao = keyboard.nextInt();
+                    if(opcao == 0)
+                    {
+                        return (l.getTelemovel());
+                    }
+                    else if(opcao >2 || opcao <0)
+                    {
+                        System.out.println("Deve introuzir uma das opções listadas!");
+                    }
+                     else if(opcao == 1)
+                    {
+                        System.out.println("Introduza o novo valor do telemóvel:");
+                        auxdouble = keyboard.nextDouble();
+                        l.getTelemovel().get(i).setPreco(auxdouble);
+                        System.out.println("Valor modificado com sucesso!");
+                    }
+                    else
+                    {
+                        System.out.println("Introduza valor a ser aumentado no stock:");
+                        auxint = keyboard.nextInt();
+                        l.getTelemovel().get(i).aumentarEstoque(auxint);
+                        System.out.println("Valor aumentado com sucesso!");
+                    }
+                    
+                }
+            }
+            return l.getTelemovel();
+        }
+        return l.getTelemovel();          
+    }
+    
+    public static int menu (){
+        Scanner keyboard = new Scanner(System.in);
+	System.out.println("1 - Telemóveis");
+	System.out.println("2 - Comprar telemóvel");
+	System.out.println("3 - Factura");
+        System.out.println("4 - Adicionar telemóvel");
+        System.out.println("5 - Modificar telemóvel");
+        System.out.println("6 - Remover telemóvel");
+        System.out.println("0 - Sair");
+        System.out.print("Introduza uma das opções:");
+        int opcao = keyboard.nextInt();
+	return opcao;
+    }
+    
+    
+    
+    
+    
     /* Produto Tech = new Produto("samsung", "arroz", 2014, "lol", 12,16, 3,16,13, "toto", 100);
         Tech.setMarca("wt");
         Tech.setModelo("arroz");

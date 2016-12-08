@@ -161,6 +161,15 @@ public class Produto /*implements Serializable*/ {
         return quantity;
     }
     
+    public void descidaEstoque(int quantity) {
+        this.quantity -= quantity ;
+    }
+    
+     public void aumentarEstoque(int quantity) {
+        this.quantity += quantity ;
+    }
+
+    
      public void setId(long id){
         this.id = id;
     }
