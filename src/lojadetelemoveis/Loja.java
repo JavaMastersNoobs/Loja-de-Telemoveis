@@ -5,9 +5,10 @@
  */
 package lojadetelemoveis;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Loja {
+public class Loja implements Serializable{
 
     private String nome;
     private ArrayList<Produto> telemovel;

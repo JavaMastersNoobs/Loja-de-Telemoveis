@@ -11,7 +11,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.*;
 
-public class Produto /*implements Serializable*/ {
+public class Produto implements Serializable{
 
     private String marca;
     private String modelo;

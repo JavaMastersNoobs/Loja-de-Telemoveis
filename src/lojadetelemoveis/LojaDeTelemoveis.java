@@ -30,7 +30,21 @@ public class LojaDeTelemoveis {
         long auxlong;
         Produto p = new Produto();
         Produto q = new Produto(); q.setId(25);
-        Loja l = new Loja("TELEMOVEIS");
+        Loja l = new Loja("Telemóveis");
+        try //para ler o ficheiro
+        {
+            ObjectInputStream is = new ObjectInputStream(new FileInputStream("C:\\UBI\\test.dat"));
+
+            l = (Loja) is.readObject();
+            
+        } 
+        catch (IOException e){
+            System.out.println(e.getMessage());
+        }
+        catch (ClassNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+       
         int opcao = menu();
         while(opcao != 0){
             switch(opcao){
@@ -48,9 +62,9 @@ public class LojaDeTelemoveis {
                 case 3:
                     //l.getFatura();
                     break;
-                case 4: 
-                    l.adicionarTelemovel(p);
+                case 4: //done maybe change it
                     l.adicionarTelemovel(q);
+                    l.adicionarTelemovel(adicionarProduto());
                     break;
                 case 5://done
                     l.setTelemovel(modificarProduto(l));
@@ -60,6 +74,15 @@ public class LojaDeTelemoveis {
                     break;
             }
             opcao = menu();
+        }
+        try //para guardar no ficheiro
+        {
+            ObjectOutputStream os = new ObjectOutputStream( new FileOutputStream ("C:\\UBI\\test.dat"));
+            os.writeObject(l);
+            os.flush();
+        }
+        catch (IOException e){
+            System.out.println(e.getMessage());
         }
         
     }
@@ -97,6 +120,40 @@ public class LojaDeTelemoveis {
         return telemoveis;
     }
     
+      public static Produto adicionarProduto()
+    {
+        Produto p = new Produto();
+        System.out.print("Introduza a marca:");
+        p.setMarca(umaString());
+        System.out.print("Introduza o modelo:");
+        p.setModelo(umaString());
+        System.out.print("Introduza o ano:");
+        p.setAno(umInt());
+        System.out.print("Introduza o processador:");
+        p.setProcessador(umaString());
+        System.out.print("Introduza a bateria:");
+        p.setBateria(umaString());
+        System.out.print("Introduza a memória interna:");
+        p.setMinterna(umaString());
+        System.out.print("Introduza a memória RAM:");
+        p.setRam(umaString());
+        System.out.print("Introduza a câmera traseira:");
+        p.setTraseira(umaString());
+        System.out.print("Introduza a câmera frontal :");
+        p.setFrontal(umaString());
+        System.out.print("Introduza a ecrã:");
+        p.setEcra(umaString());
+        System.out.print("Introduza o sistema operativo:");
+        p.setSo(umaString());
+        System.out.print("Introduza o preço:");
+        p.setPreco(umDouble());
+        System.out.print("Introduza a quantidade em estoque:");
+        p.setQuantity(umInt());
+        System.out.print("Introduza o identificador:");
+        p.setId(umLong());
+        return p;
+    }
+      
     public static ArrayList<Produto> modificarProduto(Loja l)
     {
         long auxlong;
