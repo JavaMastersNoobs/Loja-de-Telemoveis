@@ -14,6 +14,13 @@ public class Loja {
     private ArrayList<Cliente> clientes;
     private ArrayList<Factura> facturas;
 
+    public Loja(String nome)
+    {
+        this.nome = nome;
+        telemovel = new ArrayList<Produto> ();
+        clientes = new ArrayList<Cliente> ();
+        facturas = new ArrayList<Factura> ();
+    }
     public String getNome() {
         return nome;
     }
@@ -46,26 +53,29 @@ public class Loja {
         this.facturas = facturas;
     }
 
-    public boolean verifica(long id) {
+    public boolean verificar(long id) {
         boolean x;
         x = false;
-        for (int i = 0; i <= telemovel.size(); i++) {
+        for (int i = 0; i <telemovel.size(); i++) {
             x |= telemovel.get(i).getId() == id;
         }
         return x;
 
     }
 
-    public void adicionaTelemovel(Produto p) {
-        if (!verifica(p.getId())) {
+    public void adicionarTelemovel(Produto p) {
+        if (!verificar(p.getId())) {
             telemovel.add(p);
         }
     }
 
-    public void removeTelemovel(Produto p) {
-        if (!verifica(p.getId())) {
-            telemovel.remove(p);
+    public void removerTelemovel(long id) {
+        for(int i= 0; i<telemovel.size(); i++)
+        {
+            if(telemovel.get(i).getId() == id)
+            {
+                telemovel.remove(i);
+            }
         }
     }
-
 }
