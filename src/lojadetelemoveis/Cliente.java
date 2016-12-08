@@ -5,13 +5,14 @@
  */
 package lojadetelemoveis;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Gabriel
  */
-public class Cliente {
+public class Cliente implements Serializable{
     private String nome;
     private int idade;
     private long NIF;

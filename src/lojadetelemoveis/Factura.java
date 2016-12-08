@@ -5,10 +5,11 @@ import java.util.Date;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.util.Scanner;
 import static lojadetelemoveis.Factura.print;
 
-public class Factura {
+public class Factura implements Serializable{
     
     public static void main(String[] args) throws IOException 
     {
