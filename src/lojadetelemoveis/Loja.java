@@ -30,7 +30,7 @@ public class Loja implements Serializable {
     }
 
     public void setTelemovel(ArrayList<Produto> telemovel) {
-        this.telemovel = telemovel;
+        this.telemovel = (ArrayList<Produto>) telemovel.clone();
     }
 
     public ArrayList<Cliente> getClientes() {
@@ -38,7 +38,7 @@ public class Loja implements Serializable {
     }
 
     public void setClientes(ArrayList<Cliente> clientes) {
-        this.clientes = clientes;
+        this.clientes = (ArrayList) clientes.clone();
     }
 
     public ArrayList<Factura> getFacturas() {
