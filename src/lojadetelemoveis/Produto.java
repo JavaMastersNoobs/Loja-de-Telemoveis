@@ -1,17 +1,8 @@
 package lojadetelemoveis;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.*;
 
-public class Produto implements Serializable{
+public class Produto implements Serializable {
 
     private String marca;
     private String modelo;
@@ -28,7 +19,7 @@ public class Produto implements Serializable{
     private int quantity;
     private long id;
 
-    public Produto() { //String marca, String modelo, int ano, String processador, int rom, int ram, int traseira, int frontal, int ecra, String so, int preco
+    public Produto() {
         marca = "";
         modelo = "";
         ano = 0;
@@ -43,20 +34,6 @@ public class Produto implements Serializable{
         preco = 0.0;
         quantity = 0;
         id = 0;
-
-        /*this.marca = marca;
-        this.modelo = modelo;
-        this.ano = ano;
-        this.processador = processador;
-        this.rom = rom;
-        this.ram = ram;
-        this.traseira = traseira;
-        this.frontal = frontal;
-        this.ecra = ecra;
-        this.so = so;
-        this.preco = preco;
-        userRatings = new ArrayList<Integer>();
-    }*/
     }
 
     public void setMarca(String marca) {
@@ -90,7 +67,7 @@ public class Produto implements Serializable{
     public String getProcessador() {
         return processador;
     }
-    
+
     public void setBateria(String bateria) {
         this.bateria = bateria;
     }
@@ -158,40 +135,39 @@ public class Produto implements Serializable{
     public int getQuantity() {
         return quantity;
     }
-    
+
     public void descidaEstoque(int quantity) {
-        this.quantity -= quantity ;
-    }
-    
-     public void aumentarEstoque(int quantity) {
-        this.quantity += quantity ;
+        this.quantity -= quantity;
     }
 
-    
-     public void setId(long id){
+    public void aumentarEstoque(int quantity) {
+        this.quantity += quantity;
+    }
+
+    public void setId(long id) {
         this.id = id;
     }
 
     public long getId() {
         return id;
     }
-    
+
     public String toString() {
         String s = "";
         s += "Marca:" + marca + "\n";
         s += "Modelo:" + modelo + "\n";
         s += "Ano:" + ano + "\n";
-        s += "Processador" + processador + "\n";
-        s += "Bateria" + bateria + "\n";
+        s += "Processador:" + processador + "\n";
+        s += "Bateria:" + bateria + "\n";
         s += "Memória Interna:" + minterna + "\n";
-        s += "RAM:" + ram + "\n";
-        s += "Traseira:" + traseira + "\n";
-        s += "Frontal:" + frontal + "\n";
+        s += "Memória RAM:" + ram + "\n";
+        s += "Câmara Traseira:" + traseira + "\n";
+        s += "Câmara Frontal:" + frontal + "\n";
         s += "Ecrã:" + ecra + "\n";
-        s += "SO:" + so + "\n";
+        s += "Sistema Operativo:" + so + "\n";
         s += "Preço:" + preco + "\n";
         s += "Quantidade:" + quantity + "\n";
-        s += "Identificador:"+ id + "\n";
+        s += "Identificador:" + id + "\n";
         return s;
     }
 }

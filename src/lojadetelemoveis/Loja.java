@@ -1,27 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lojadetelemoveis;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Loja implements Serializable{
+public class Loja implements Serializable {
 
     private String nome;
     private ArrayList<Produto> telemovel;
     private ArrayList<Cliente> clientes;
     private ArrayList<Factura> facturas;
 
-    public Loja(String nome)
-    {
+    public Loja(String nome) {
         this.nome = nome;
-        telemovel = new ArrayList<Produto> ();
-        clientes = new ArrayList<Cliente> ();
-        facturas = new ArrayList<Factura> ();
+        telemovel = new ArrayList<Produto>();
+        clientes = new ArrayList<Cliente>();
+        facturas = new ArrayList<Factura>();
     }
+
     public String getNome() {
         return nome;
     }
@@ -57,12 +52,13 @@ public class Loja implements Serializable{
     public boolean verificarTelemovel(long id) {
         boolean x;
         x = false;
-        for (int i = 0; i <telemovel.size(); i++) {
+        for (int i = 0; i < telemovel.size(); i++) {
             x |= telemovel.get(i).getId() == id;
         }
         return x;
 
     }
+
     public void adicionarTelemovel(Produto p) {
         if (!verificarTelemovel(p.getId())) {
             telemovel.add(p);
@@ -70,10 +66,8 @@ public class Loja implements Serializable{
     }
 
     public void removerTelemovel(long id) {
-        for(int i= 0; i<telemovel.size(); i++)
-        {
-            if(telemovel.get(i).getId() == id)
-            {
+        for (int i = 0; i < telemovel.size(); i++) {
+            if (telemovel.get(i).getId() == id) {
                 telemovel.remove(i);
             }
         }
