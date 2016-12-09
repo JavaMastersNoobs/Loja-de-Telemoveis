@@ -50,9 +50,9 @@ public class LojaDeTelemoveis {
                 case 3:
                     //l.getFatura();
                     break;
-                case 4: //done maybe change it
+                case 4: //done (maybe change it)
                     l.adicionarTelemovel(q);
-                    l.adicionarTelemovel(adicionarProduto());
+                    //l.adicionarTelemovel(adicionarProduto());
                     break;
                 case 5://done
                     l.setTelemovel(modificarProduto(l));
@@ -109,7 +109,8 @@ public class LojaDeTelemoveis {
 
     public static ArrayList<Produto> modificarProduto(Loja l) {
         long auxlong;
-        int auxint, opcao = -1;
+        int auxint;
+        int opcao;
         double auxdouble;
         System.out.print("Introduza o identificador do telemóvel a ser modificado:");
         auxlong = umLong();
@@ -128,25 +129,33 @@ public class LojaDeTelemoveis {
                 auxlong = umLong();
             }
         }
-        for (int i = 0; i < l.getTelemovel().size(); i++) {
-            if (l.getTelemovel().get(i).getId() == auxlong) {
+        for (int i = 0; i < l.getTelemovel().size(); i++) 
+        {
+            if (l.getTelemovel().get(i).getId() == auxlong) 
+            {
                 opcao = -1;
-                while (opcao < 0 || opcao > 2) {
+                while (opcao < 0 || opcao > 2) 
+                {
                     System.out.println("1 - Modificar preço");
                     System.out.println("2 - Aumentar quantidade em stock");
                     System.out.println("0 - Voltar ao menu principal");
                     System.out.print("Introduza uma das opções:");
                     opcao = umInt();
-                    if (opcao == 0) {
+                    if (opcao == 0) 
+                    {
                         return (l.getTelemovel());
-                    } else if (opcao > 2 || opcao < 0) {
+                    } else if (opcao > 2 || opcao < 0) 
+                    {
                         System.out.println("Deve introuzir uma das opções listadas!");
-                    } else if (opcao == 1) {
+                    } else if (opcao == 1) 
+                    {
                         System.out.print("Introduza o novo preço do telemóvel:");
                         auxdouble = umDouble();
                         l.getTelemovel().get(i).setPreco(auxdouble);
                         System.out.println("Preço modificado com sucesso!");
-                    } else {
+                    } 
+                    else 
+                    {
                         System.out.print("Introduza valor a ser aumentado no stock:");
                         auxint = umInt();
                         l.getTelemovel().get(i).aumentarEstoque(auxint);
