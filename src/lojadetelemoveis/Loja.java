@@ -8,7 +8,6 @@ public class Loja implements Serializable {
     private String nome;
     private ArrayList<Produto> telemovel;
     private ArrayList<Cliente> clientes;
-    private ArrayList<Factura> facturas;
 
     public Loja(String nome) {
         this.nome = nome;
@@ -91,6 +90,11 @@ public class Loja implements Serializable {
         if (!verificarCliente(c.getNIF())) 
         {
             clientes.add(c);
+            System.out.println("Cliente adicionado com sucesso!");
+        }
+        else
+        {
+            System.out.println("Cliente não pode ser adicionado!");
         }
     }
     public void removerCliente(long NIF) 
