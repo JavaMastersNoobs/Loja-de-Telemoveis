@@ -61,6 +61,11 @@ public class Loja implements Serializable {
         if (!verificarTelemovel(p.getId()))
         {
             telemovel.add(p);
+            System.out.println("Produto adicionado com sucesso!");
+        }
+        else
+        {
+            System.out.println("O produto não pode ser adicionado!");
         }
     }
 

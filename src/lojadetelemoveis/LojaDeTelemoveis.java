@@ -221,14 +221,47 @@ public class LojaDeTelemoveis {
     
     public static ArrayList<Cliente> modificarCliente(Loja l)
     {
+        int auxint, auxint2 = 0;
         long auxlong;
-        String auxstring = "";
+        String auxstring;
         int opcao = menu8();
         while(opcao != 0)
         {
             switch(opcao)
             {
                 case 1:
+                    System.out.print("Intoduza o nome do cliente:");
+                    auxstring = umaString();
+                    auxint = 0;
+                    for(int i=0; i<l.getClientes().size(); i++)
+                    {
+                        if(l.getClientes().get(i).getNome().equals(auxstring))
+                        {
+                            auxint ++;
+                            if(auxint == 1)
+                            {
+                                auxint2 = i;
+                            }
+                        }
+                    }
+                    if(auxint == 1) 
+                    {
+                        System.out.print("Introduza a nova morada:");
+                        auxstring = umaString();
+                        l.getClientes().get(auxint2).setMorada(auxstring);
+                        System.out.println("Morada modificada com sucesso!");
+                        
+                    }
+                    else if(auxint >1)
+                    {
+                        System.out.println("Existe clientes com o mesmo nome, deve pesquisar pelo NIF!");
+                    }
+                    else 
+                    {
+                        System.out.println("O cliente não foi encontrado!");
+                    }
+                    break;
+                case 2:
                     System.out.print("Introduza o NIF do cliente:");
                     auxlong = umLong();
                     if(l.verificarCliente(auxlong) == true) 
@@ -240,7 +273,7 @@ public class LojaDeTelemoveis {
                                 System.out.print("Introduza a nova morada:");
                                 auxstring = umaString();
                                 l.getClientes().get(i).setMorada(auxstring);
-                                System.out.println("Preço modificado com sucesso!");
+                                System.out.println("Morada modificada com sucesso!");
                                 break;
                             } 
                         }
@@ -288,7 +321,7 @@ public class LojaDeTelemoveis {
                     }
                     else if(auxint >1)
                     {
-                        System.out.println("Existe clientes com o mesmo nome, deve remover pelo NIF!");
+                        System.out.println("Existe clientes com o mesmo nome, deve pesquisar pelo NIF!");
                     }
                     else 
                     {

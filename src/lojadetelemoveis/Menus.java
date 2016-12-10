@@ -66,12 +66,13 @@ public class Menus {
     public static int menu8() 
     {
         System.out.println("===============================================================");
-        System.out.println("1 - Modificar morada");
+        System.out.println("1 - Modificar morada pesquisando pelo nome do cliente");
+        System.out.println("2 - Modificar morada pesquisando pelo NIF do cliente");
         System.out.println("0 - Voltar ao menu principal");
         System.out.print("Introduza uma das opções:");
         int opcao = umInt();
         System.out.println("===============================================================");
-        if (opcao < 0 || opcao > 1) {
+        if (opcao < 0 || opcao > 2) {
             System.out.println("Deve introduzir uma das opções listadas!");
         }
         return opcao;
