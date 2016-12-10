@@ -214,7 +214,7 @@ public class LojaDeTelemoveis {
         c.setIdade(umInt());
         System.out.print("Introduza o NIF:");
         c.setNIF(umLong());
-        System.out.print("Introduza o processador:");
+        System.out.print("Introduza a morada:");
         c.setMorada(umaString());
         return c;
     }
@@ -223,7 +223,7 @@ public class LojaDeTelemoveis {
     {
         long auxlong;
         String auxstring = "";
-        int opcao = menu5();
+        int opcao = menu8();
         while(opcao != 0)
         {
             switch(opcao)
