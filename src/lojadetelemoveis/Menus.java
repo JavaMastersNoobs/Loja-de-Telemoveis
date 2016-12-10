@@ -1,19 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lojadetelemoveis;
 
 import static lojadetelemoveis.Ler.umInt;
 
-/**
- *
- * @author Gabriel
- */
 public class Menus {
-    public static int menu() 
-    {
+
+    public static int menu() {
         System.out.println("================================================================");
         System.out.println("1 - Listar telemóveis");
         System.out.println("2 - Comprar");
@@ -33,9 +24,8 @@ public class Menus {
         }
         return opcao;
     }
- 
-    public static int menu5() 
-    {
+
+    public static int menu5() {
         System.out.println("===============================================================");
         System.out.println("1 - Modificar preço do produto");
         System.out.println("2 - Aumentar quantidade em stock");
@@ -48,9 +38,8 @@ public class Menus {
         }
         return opcao;
     }
-    
-    public static int menu6() 
-    {
+
+    public static int menu6() {
         System.out.println("===============================================================");
         System.out.println("1 - Remover produto pelo seu identificador");
         System.out.println("0 - Voltar ao menu principal");
@@ -62,9 +51,8 @@ public class Menus {
         }
         return opcao;
     }
-    
-    public static int menu8() 
-    {
+
+    public static int menu8() {
         System.out.println("===============================================================");
         System.out.println("1 - Modificar morada pesquisando pelo nome do cliente");
         System.out.println("2 - Modificar morada pesquisando pelo NIF do cliente");
@@ -77,8 +65,8 @@ public class Menus {
         }
         return opcao;
     }
-    public static int menu9() 
-    {
+
+    public static int menu9() {
         System.out.println("===============================================================");
         System.out.println("1 - Remover cliente pelo nome");
         System.out.println("2 - Remover cliente pelo NIF");
@@ -91,5 +79,5 @@ public class Menus {
         }
         return opcao;
     }
-    
+
 }
