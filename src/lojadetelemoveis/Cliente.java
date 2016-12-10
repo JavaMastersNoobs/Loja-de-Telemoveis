@@ -10,6 +10,14 @@ public class Cliente implements Serializable {
     private long NIF;
     private String morada;
     private ArrayList<Factura> facturas;
+    
+    public Cliente() {
+        this.nome = "";
+        this.idade = 0;
+        this.NIF = 0;
+        this.morada = "";
+        facturas = new ArrayList<Factura>();
+    }
 
     public Cliente(String nome, int idade, long NIF, String morada) {
         this.nome = nome;
