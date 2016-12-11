@@ -8,35 +8,32 @@ public class Loja implements Serializable {
     private String nome;
     private ArrayList<Produto> telemovel;
     private ArrayList<Cliente> clientes;
+    private ArrayList<Factura> facturas;
 
     public Loja(String nome) {
         this.nome = nome;
         telemovel = new ArrayList<Produto>();
         clientes = new ArrayList<Cliente>();
+        facturas = new ArrayList<Factura>();
     }
 
-    public String getNome() 
-    {
+    public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome)
-    {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public ArrayList<Produto> getTelemovel()
-    {
+    public ArrayList<Produto> getTelemovel() {
         return telemovel;
     }
 
-    public void setTelemovel(ArrayList<Produto> telemovel) 
-    {
+    public void setTelemovel(ArrayList<Produto> telemovel) {
         this.telemovel = (ArrayList<Produto>) telemovel.clone();
     }
 
-    public ArrayList<Cliente> getClientes() 
-    {
+    public ArrayList<Cliente> getClientes() {
         return clientes;
     }
 
@@ -44,110 +41,119 @@ public class Loja implements Serializable {
         this.clientes = (ArrayList) clientes.clone();
     }
 
-    public boolean verificarTelemovel(long id)
-    {
+    public ArrayList<Factura> getFacturas() {
+        return facturas;
+    }
+
+    public void setFacturas(ArrayList<Factura> facturas) {
+        this.facturas = (ArrayList) facturas.clone();
+    }
+
+    public boolean verificarTelemovel(long id) {
         boolean x;
         x = false;
-        for (int i = 0; i < telemovel.size(); i++) 
-        {
+        for (int i = 0; i < telemovel.size(); i++) {
             x |= telemovel.get(i).getId() == id;
         }
         return x;
 
     }
 
-    public void adicionarTelemovel(Produto p) 
-    {
-        if (!verificarTelemovel(p.getId()))
-        {
+    public void adicionarTelemovel(Produto p) {
+        if (!verificarTelemovel(p.getId())) {
             telemovel.add(p);
             System.out.println("Produto adicionado com sucesso!");
-        }
-        else
-        {
+        } else {
             System.out.println("O produto não pode ser adicionado!");
         }
     }
 
-    public void removerTelemovel(int i) 
-    {
+    public void removerTelemovel(int i) {
         telemovel.remove(i);
     }
-    
-    public int consultarTelemovel(long id)
-    {   
+
+    public int consultarTelemovel(long id) {
         int auxint = -1;
-        for(int i=0; i<telemovel.size(); i++)
-        {
-            if(telemovel.get(i).getId() == id)
-            {
+        for (int i = 0; i < telemovel.size(); i++) {
+            if (telemovel.get(i).getId() == id) {
                 return i;
             }
         }
         return auxint;
     }
-    
-    
-    public boolean verificarCliente(long NIF) 
-    {
+
+    public boolean verificarCliente(long NIF) {
         boolean x;
         x = false;
-        for (int i = 0; i < clientes.size(); i++)
-        {
+        for (int i = 0; i < clientes.size(); i++) {
             x |= clientes.get(i).getNIF() == NIF;
         }
         return x;
 
     }
-    public void adicionarCliente(Cliente c) 
-    {
-        if (! verificarCliente(c.getNIF())) 
-        {
+
+    public void adicionarCliente(Cliente c) {
+        if (!verificarCliente(c.getNIF())) {
             clientes.add(c);
             System.out.println("Cliente adicionado com sucesso!");
-        }
-        else
-        {
+        } else {
             System.out.println("Cliente não pode ser adicionado!");
         }
     }
-    public void removerCliente(int i) 
-    {
+
+    public void removerCliente(int i) {
         clientes.remove(i);
     }
-    
-    public int consultarCliente(String nome)
-    {   
-        int aux=0, auxint=-1;
-        for(int i=0; i<clientes.size(); i++)
-        {
-            if(clientes.get(i).getNome().equals(nome))
-            {
-                aux ++;
+
+    public int consultarCliente(String nome) {
+        int aux = 0, auxint = -1;
+        for (int i = 0; i < clientes.size(); i++) {
+            if (clientes.get(i).getNome().equals(nome)) {
+                aux++;
                 auxint = i;
             }
         }
-        if(aux == 1)
-        {
+        if (aux == 1) {
             return auxint;
         }
-        if(aux >1)
-        {
+        if (aux > 1) {
             return -1;
-        }
-        else
-        {
+        } else {
             return -2;
         }
-        
+
     }
-    public int consultarCliente(long NIF)
-    {   
+
+    public int consultarCliente(long NIF) {
         int auxint = -1;
-        for(int i=0; i<clientes.size(); i++)
-        {
-            if(clientes.get(i).getNIF() == NIF)
-            {
+        for (int i = 0; i < clientes.size(); i++) {
+            if (clientes.get(i).getNIF() == NIF) {
+                return i;
+            }
+        }
+        return auxint;
+    }
+
+    public boolean verificarFactura(long id) {
+        boolean x;
+        x = false;
+        for (int i = 0; i < facturas.size(); i++) {
+            x |= facturas.get(i).getId() == id;
+        }
+        return x;
+    }
+
+    public void adicionarFactura(Factura c) {
+        if (!verificarFactura(c.getId())) {
+            facturas.add(c);
+
+        }
+    }
+
+    public int consultarFactura(long id) {
+        int auxint = -1;
+        for (int i = 0; i < facturas.size(); i++) {
+            if (facturas.get(i).getId() == id) {
                 return i;
             }
         }
