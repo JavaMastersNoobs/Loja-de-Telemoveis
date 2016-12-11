@@ -16,6 +16,7 @@ public static String umaString(){
     try{
         BufferedReader in = new BufferedReader ( new InputStreamReader (System.in));
         s = in.readLine();
+        
     }
     catch(IOException e){
         System.out.println("Erro ao ler");

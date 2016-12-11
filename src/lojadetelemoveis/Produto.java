@@ -151,6 +151,26 @@ public class Produto implements Serializable {
     public long getId() {
         return id;
     }
+    
+     public Object clone()
+    {
+        Produto p = new Produto();
+        p.marca = this.marca;
+        p.modelo = this.modelo;
+        p.ano = this.ano;
+        p.processador = this.processador;
+        p.bateria = this.bateria;
+        p.minterna = this.minterna;
+        p.ram = this.ram;
+        p.traseira = this.traseira;
+        p.frontal = this.frontal;
+        p.ecra = this.ecra;
+        p.so = this.so;
+        p.preco = this.preco;
+        p.quantity = this.quantity;
+        p.id = this.id;
+        return p;
+    }
 
     public String toString() {
         String s = "";
