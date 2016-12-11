@@ -40,32 +40,31 @@ public class LojaDeTelemoveis {
                     System.out.println(l.getTelemovel().toString());
                     break;
                 case 2:
-                    System.out.print("Introduza o identificador do telemóvel:");
-                    auxlong = umLong();
-                    if (l.verificarTelemovel(auxlong) == true) {
-                        l.getTelemovel().get(0).descidaEstoque(1);
-                    }
+                    System.out.println(l.getClientes().toString());
                     break;
                 case 3:
+                    comprar(l);
+                    break;
+                case 4:
                     //l.getFatura();
                     break;
-                case 4: //done (maybe change it)
+                case 5: //done (maybe change it)
                     l.adicionarTelemovel(q);
                     //l.adicionarTelemovel(adicionarProduto());
                     break;
-                case 5://done
+                case 6://done
                     l.setTelemovel(modificarProduto(l));
                     break;
-                case 6://done
+                case 7://done
                     l.setTelemovel(removerProduto(l));
                     break;
-                case 7:
+                case 8:
                     l.adicionarCliente(adicionarCliente());
                     break;
-                case 8:
+                case 9:
                     l.setClientes(modificarCliente(l));
                     break;
-                case 9:
+                case 10:
                     l.setClientes(removerCliente(l));
                     break;
             }
@@ -80,6 +79,111 @@ public class LojaDeTelemoveis {
             System.out.println(e.getMessage());
         }
 
+    }
+    
+    
+    public static Loja comprar(Loja l)
+    {
+        long auxlong;
+        int auxint =0;
+        String auxstring = "";
+        int opcao = menu3();
+        ArrayList<Produto> compras = new ArrayList<Produto>();
+        ArrayList<Integer> quantidade = new ArrayList<Integer> ();
+        while (opcao != 0) 
+        {
+            switch (opcao) 
+            {
+                case 1:
+                    l.adicionarCliente(adicionarCliente());
+                    break;
+                case 2:
+                    System.out.print("Intoduza o nome do cliente:");
+                    auxstring = umaString();
+                    auxint = l.consultarCliente(auxstring);
+                    if (auxint >=0) 
+                    {
+                        System.out.println("Cliente encontrado com sucesso!");
+                    } 
+                    else if(auxint == -1) 
+                    {
+                        System.out.println("Existe clientes com o mesmo nome, deve pesquisar pelo NIF!");
+                        System.out.print("Introduza o NIF do cliente:");
+                        auxlong = umLong();
+                        auxint = l.consultarCliente(auxlong);
+                        if (auxint != -1) 
+                        {
+                            
+                            System.out.println("Cliente encontrado com sucesso!");
+                        }
+                        else
+                        {
+                            System.out.println("O cliente não foi encontrado, deve registar-se!");
+                            break;
+                        }
+                    } 
+                    else
+                    {
+                        System.out.println("O cliente não foi encontrado,deve registar-se!");
+                        break;
+                    }
+                    int valor = -1;
+                    while( valor != 0)
+                    {
+                        System.out.print("Introduza o identificador do telemóvel:");
+                        auxlong = umLong();
+                        int auxint2 = l.consultarTelemovel(auxlong);
+                        if (auxint2 != -1) 
+                        {
+                            int auxint3 =0;
+                            while(auxint3 < 1)
+                            {
+                                System.out.println("Qual a quantidade que deseja comprar?");
+                                auxint3 = umInt();
+                                if(auxint3 < 1)
+                                {
+                                    System.out.println("Quantidade não permitida, introduza novamente!");
+                                }
+                            }
+                            if(l.getTelemovel().get(auxint2).getQuantity() >= auxint3)
+                            {
+                                l.getTelemovel().get(auxint2).descidaEstoque(auxint3);
+                                compras.add((Produto) l.getTelemovel().get(auxint2).clone());
+                                quantidade.add(auxint3);
+                                System.out.println("Adicionado a lista de compras!");
+                            }
+                            else
+                            {
+                                System.out.println("Stock esgotado!");
+                            }
+                        }
+                        else
+                        {
+                            System.out.println("O identificador do telemóvel não foi encontrado!");
+                            break;
+                        }
+                        System.out.println("===============================================================");
+                        System.out.println("1 - Comprar mais produtos");
+                        System.out.println("0 - Encerrar compra");
+                        System.out.print("Introduza uma das opções:");
+                        valor = umInt();
+                        System.out.println("===============================================================");
+                        while (valor < 0 || valor > 1) 
+                        {
+                            System.out.println("Deve introduzir uma das opções listadas!");
+                            System.out.println("===============================================================");
+                            System.out.println("1 - Comprar mais produtos");
+                            System.out.println("0 - Encerrar compra");
+                            System.out.print("Introduza uma das opções:");
+                            valor = umInt();
+                            System.out.println("===============================================================");
+                        }
+                    }
+                    break;
+            }
+            opcao = menu3();
+        } 
+        return l;
     }
 
     public static Produto adicionarProduto() {
@@ -170,6 +274,7 @@ public class LojaDeTelemoveis {
         auxdouble = 0;
         String auxstring;
         System.out.print("Introduzir o número identificador do telemóvel a modificar:");
+        auxlong = umLong();
         auxint = 0;
         for (int i = 0; i < l.getTelemovel().size(); i++) {
             if (l.getTelemovel().get(i).getId() == auxlong) {
@@ -184,10 +289,13 @@ public class LojaDeTelemoveis {
         } else {
             System.out.println("Telemóvel não encontrado!");
         }
-        if (auxint == 1) {
-            int opcao = menu10();
-            while (opcao != 0) {
-                switch (opcao) {
+        if (auxint == 1) 
+        {
+            int opcao = menu6();
+            while (opcao != 0) 
+            {
+                switch (opcao) 
+                {
                     case 1:
                         System.out.print("Introduza modificação:");
                         auxstring = umaString();
@@ -267,34 +375,43 @@ public class LojaDeTelemoveis {
                         System.out.println("Modificação feita com sucesso.");
                         break;
                 }
-                opcao = menu10();
+                opcao = menu6();
             }
         }
         return l.getTelemovel();
     }
 
-    public static ArrayList<Produto> removerProduto(Loja l) {
+    public static ArrayList<Produto> removerProduto(Loja l) 
+    {
         long auxlong;
-        int opcao = menu6();
-        while (opcao != 0) {
-            switch (opcao) {
+        int auxint;
+        int opcao = menu7();
+        while (opcao != 0) 
+        {
+            switch (opcao)
+            {
                 case 1:
                     System.out.print("Intoduza o identificador do telemóvel a ser removido:");
                     auxlong = umLong();
-                    if (l.verificarTelemovel(auxlong) == true) {
-                        l.removerTelemovel(auxlong);
+                    auxint = l.consultarTelemovel(auxlong);
+                    if (auxint != -1) 
+                    {
+                        l.removerTelemovel(auxint);
                         System.out.println("Produto removido com sucesso!");
-                    } else {
+                    }
+                    else
+                    {
                         System.out.println("O produto não foi encontrado!");
                     }
                     break;
             }
-            opcao = menu6();
+            opcao = menu7();
         }
         return l.getTelemovel();
     }
 
-    public static Cliente adicionarCliente() {
+    public static Cliente adicionarCliente() 
+    {
         Cliente c = new Cliente();
         System.out.print("Introduza o nome:");
         c.setNome(umaString());
@@ -331,51 +448,70 @@ public class LojaDeTelemoveis {
         return c;
     }
 
-    public static ArrayList<Cliente> modificarCliente(Loja l) {
+    public static ArrayList<Cliente> modificarCliente(Loja l) 
+    {
         int auxint, auxint2 = 0;
         long auxlong;
         String auxstring;
         System.out.print("Intoduza o nome do cliente:");
         auxstring = umaString();
         auxint = 0;
-        for (int i = 0; i < l.getClientes().size(); i++) {
-            if (l.getClientes().get(i).getNome().equals(auxstring)) {
+        for (int i = 0; i < l.getClientes().size(); i++) 
+        {
+            if (l.getClientes().get(i).getNome().equals(auxstring))
+            {
                 auxint++;
-                if (auxint == 1) {
+                if (auxint == 1) 
+                {
                     auxint2 = i;
                 }
             }
         }
-        if (auxint == 1) {
+        if (auxint == 1) 
+        {
             System.out.println("Cliente encontrado.");
-        } else if (auxint > 1) {
+        } 
+        else if (auxint > 1) 
+        {
             System.out.println("Existe clientes com o mesmo nome, deve pesquisar pelo NIF!");
             System.out.println("Introduza o NIF do cliente:");
             auxlong = umLong();
             auxint = 0;
-            if (l.verificarCliente(auxlong) == true) {
-                for (int i = 0; i < l.getClientes().size(); i++) {
-                    if (l.getClientes().get(i).getNIF() == auxlong) {
+            if (l.verificarCliente(auxlong) == true) 
+            {
+                for (int i = 0; i < l.getClientes().size(); i++) 
+                {
+                    if (l.getClientes().get(i).getNIF() == auxlong) 
+                    {
                         auxint++;
-                        if (auxint == 1) {
+                        if (auxint == 1) 
+                        {
                             auxint2 = i;
                         }
                     }
                 }
             }
-            if (auxint == 1) {
+            if (auxint == 1)
+            {
                 System.out.println("Cliente encontrado.");
-            } else {
+            } 
+            else 
+            {
                 System.out.println("O cliente não foi encontrado!");
             }
-        } else {
+        } 
+        else 
+        {
             System.out.println("O cliente não foi encontrado!");
         }
 
-        if (auxint == 1) {
-            int opcao = menu8();
-            while (opcao != 0) {
-                switch (opcao) {
+        if (auxint == 1) 
+        {
+            int opcao = menu9();
+            while (opcao != 0) 
+            {
+                switch (opcao) 
+                {
                     case 1:
                         System.out.print("Introduza modificação:");
                         auxstring = umaString();
@@ -407,52 +543,57 @@ public class LojaDeTelemoveis {
                         System.out.println("Modificação feita com sucesso.");
                         break;
                 }
-                opcao = menu8();
+                opcao = menu9();
             }
         }
         return l.getClientes();
     }
 
-    public static ArrayList<Cliente> removerCliente(Loja l) {
+ public static ArrayList<Cliente> removerCliente(Loja l) 
+    {
         int auxint;
         long auxlong = 0;
         String auxstring;
-        int opcao = menu9();
-        while (opcao != 0) {
-            switch (opcao) {
+        int opcao = menu10();
+        while (opcao != 0) 
+        {
+            switch (opcao) 
+            {
                 case 1:
                     System.out.print("Intoduza o nome do cliente:");
                     auxstring = umaString();
-                    auxint = 0;
-                    for (int i = 0; i < l.getClientes().size(); i++) {
-                        if (l.getClientes().get(i).getNome().equals(auxstring)) {
-                            auxint++;
-                            if (auxint == 1) {
-                                auxlong = l.getClientes().get(i).getNIF();
-                            }
-                        }
-                    }
-                    if (auxint == 1) {
-                        l.removerCliente(auxlong);
+                    auxint = l.consultarCliente(auxstring);
+                    if(auxint >= 0) 
+                    {
+                        l.removerCliente(auxint);
                         System.out.println("Cliente removido com sucesso!");
-                    } else if (auxint > 1) {
+
+                    } 
+                    else if(auxint == -1) 
+                    {
                         System.out.println("Existe clientes com o mesmo nome, deve pesquisar pelo NIF!");
-                    } else {
+                    } 
+                    else
+                    {
                         System.out.println("O cliente não foi encontrado!");
                     }
                     break;
                 case 2:
                     System.out.print("Intoduza o NIF do cliente:");
                     auxlong = umLong();
-                    if (l.verificarCliente(auxlong) == true) {
-                        l.removerCliente(auxlong);
+                    auxint = l.consultarCliente(auxlong);
+                    if (auxint != -1) 
+                    {
+                        l.removerCliente(auxint);
                         System.out.println("Cliente removido com sucesso!");
-                    } else {
+                    }
+                    else
+                    {
                         System.out.println("O cliente não foi encontrado!");
                     }
                     break;
             }
-            opcao = menu9();
+            opcao = menu10();
         }
         return l.getClientes();
     }
