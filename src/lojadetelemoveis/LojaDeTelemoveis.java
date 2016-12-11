@@ -26,9 +26,7 @@ public class LojaDeTelemoveis {
         try //para ler o ficheiro
         {
             ObjectInputStream is = new ObjectInputStream(new FileInputStream("C:\\UBI\\test.dat"));
-
             l = (Loja) is.readObject();
-
         } catch (IOException e) {
             System.out.println(e.getMessage());
         } catch (ClassNotFoundException e) {
@@ -110,17 +108,18 @@ public class LojaDeTelemoveis {
         p.setSo(umaString());
         System.out.print("Introduza o preço:");
         p.setPreco(umDouble());
-        System.out.print("Introduza a quantidade em estoque:");
+        System.out.print("Introduza a quantidade em stock:");
         p.setQuantity(umInt());
         System.out.print("Introduza o identificador:");
         p.setId(umLong());
         return p;
     }
 
-    public static ArrayList<Produto> modificarProduto(Loja l) {
+    /*public static ArrayList<Produto> modificarProduto(Loja l) {
+        int auxint, auxint2 = 0;
         long auxlong;
-        int auxint;
         double auxdouble;
+        String auxstring;
         int opcao = menu5();
         while (opcao != 0) {
             switch (opcao) {
@@ -162,6 +161,117 @@ public class LojaDeTelemoveis {
         }
         return l.getTelemovel();
     }
+     */
+    public static ArrayList<Produto> modificarProduto(Loja l) {
+        int auxint, auxint2 = 0;
+        long auxlong;
+        auxlong = 0;
+        double auxdouble;
+        auxdouble = 0;
+        String auxstring;
+        System.out.print("Introduzir o número identificador do telemóvel a modificar:");
+        auxint = 0;
+        for (int i = 0; i < l.getTelemovel().size(); i++) {
+            if (l.getTelemovel().get(i).getId() == auxlong) {
+                auxint++;
+                if (auxint == 1) {
+                    auxint2 = i;
+                }
+            }
+        }
+        if (auxint == 1) {
+            System.out.println("Telemóvel encontrado.");
+        } else {
+            System.out.println("Telemóvel não encontrado!");
+        }
+        if (auxint == 1) {
+            int opcao = menu10();
+            while (opcao != 0) {
+                switch (opcao) {
+                    case 1:
+                        System.out.print("Introduza modificação:");
+                        auxstring = umaString();
+                        l.getTelemovel().get(auxint2).setMarca(auxstring);
+                        System.out.println("Modificação feita com sucesso.");
+                        break;
+                    case 2:
+                        System.out.print("Introduza modificação:");
+                        auxstring = umaString();
+                        l.getTelemovel().get(auxint2).setModelo(auxstring);
+                        System.out.println("Modificação feita com sucesso.");
+                        break;
+                    case 3:
+                        System.out.print("Introduza modificação:");
+                        auxint = umInt();
+                        l.getTelemovel().get(auxint2).setAno(auxint);
+                        System.out.println("Modificação feita com sucesso.");
+                        break;
+                    case 4:
+                        System.out.print("Introduza modificação:");
+                        auxstring = umaString();
+                        l.getTelemovel().get(auxint2).setProcessador(auxstring);
+                        System.out.println("Modificação feita com sucesso.");
+                        break;
+                    case 5:
+                        System.out.print("Introduza modificação:");
+                        auxstring = umaString();
+                        l.getTelemovel().get(auxint2).setBateria(auxstring);
+                        System.out.println("Modificação feita com sucesso.");
+                        break;
+                    case 6:
+                        System.out.print("Introduza modificação:");
+                        auxstring = umaString();
+                        l.getTelemovel().get(auxint2).setMinterna(auxstring);
+                        System.out.println("Modificação feita com sucesso.");
+                        break;
+                    case 7:
+                        System.out.print("Introduza modificação:");
+                        auxstring = umaString();
+                        l.getTelemovel().get(auxint2).setRam(auxstring);
+                        System.out.println("Modificação feita com sucesso.");
+                        break;
+                    case 8:
+                        System.out.print("Introduza modificação:");
+                        auxstring = umaString();
+                        l.getTelemovel().get(auxint2).setTraseira(auxstring);
+                        System.out.println("Modificação feita com sucesso.");
+                        break;
+                    case 9:
+                        System.out.print("Introduza modificação:");
+                        auxstring = umaString();
+                        l.getTelemovel().get(auxint2).setFrontal(auxstring);
+                        System.out.println("Modificação feita com sucesso.");
+                        break;
+                    case 10:
+                        System.out.print("Introduza modificação:");
+                        auxstring = umaString();
+                        l.getTelemovel().get(auxint2).setEcra(auxstring);
+                        System.out.println("Modificação feita com sucesso.");
+                        break;
+                    case 11:
+                        System.out.print("Introduza modificação:");
+                        auxstring = umaString();
+                        l.getTelemovel().get(auxint2).setSo(auxstring);
+                        System.out.println("Modificação feita com sucesso.");
+                        break;
+                    case 12:
+                        System.out.print("Introduza modificação:");
+                        auxdouble = umDouble();
+                        l.getTelemovel().get(auxint2).setPreco(auxdouble);
+                        System.out.println("Modificação feita com sucesso.");
+                        break;
+                    case 13:
+                        System.out.print("Introduza modificação:");
+                        auxint = umInt();
+                        l.getTelemovel().get(auxint2).setQuantity(auxint);
+                        System.out.println("Modificação feita com sucesso.");
+                        break;
+                }
+                opcao = menu10();
+            }
+        }
+        return l.getTelemovel();
+    }
 
     public static ArrayList<Produto> removerProduto(Loja l) {
         long auxlong;
@@ -188,15 +298,33 @@ public class LojaDeTelemoveis {
         Cliente c = new Cliente();
         System.out.print("Introduza o nome:");
         c.setNome(umaString());
-        System.out.print("Introduza a idade:");
-        c.setIdade(umInt());
+        System.out.print("Introduza a data de nascimento:");
+        c.setDatanascimento(umaString());
         System.out.print("Introduza o NIF:");
-        c.setNIF(umLong());
-        long length = (long) (Math.log10(umLong()) + 1);
-        while (length < 9 || length > 9) {
-            System.out.println("O NIF tem de ter 9 dígitos. Por favor introduza outra vez o NIF:");
-            c.setNIF(umLong());
-            length = (long) (Math.log10(umLong()) + 1);
+        long auxlong = umLong();
+        long length = (long) (Math.log10(auxlong) + 1);
+        if (length < 9 || length > 9) {
+            while (length < 9 || length > 9) {
+                System.out.println("O NIF tem de ter 9 dígitos. Por favor introduza de novo o NIF:");
+                auxlong = umLong();
+                length = (long) (Math.log10(auxlong) + 1);
+            }
+            c.setNIF(auxlong);
+        } else {
+            c.setNIF(auxlong);
+        }
+        System.out.println("Introduza o contacto:");
+        auxlong = umLong();
+        length = (long) (Math.log10(auxlong) + 1);
+        if (length < 9 || length > 9) {
+            while (length < 9 || length > 9) {
+                System.out.println("O contacto tem de ter 9 dígitos. Por favor introduza de novo o contacto:");
+                auxlong = umLong();
+                length = (long) (Math.log10(auxlong) + 1);
+            }
+            c.setContacto(auxlong);
+        } else {
+            c.setContacto(auxlong);
         }
         System.out.print("Introduza a morada:");
         c.setMorada(umaString());
@@ -207,52 +335,80 @@ public class LojaDeTelemoveis {
         int auxint, auxint2 = 0;
         long auxlong;
         String auxstring;
-        int opcao = menu8();
-        while (opcao != 0) {
-            switch (opcao) {
-                case 1:
-                    System.out.print("Intoduza o nome do cliente:");
-                    auxstring = umaString();
-                    auxint = 0;
-                    for (int i = 0; i < l.getClientes().size(); i++) {
-                        if (l.getClientes().get(i).getNome().equals(auxstring)) {
-                            auxint++;
-                            if (auxint == 1) {
-                                auxint2 = i;
-                            }
+        System.out.print("Intoduza o nome do cliente:");
+        auxstring = umaString();
+        auxint = 0;
+        for (int i = 0; i < l.getClientes().size(); i++) {
+            if (l.getClientes().get(i).getNome().equals(auxstring)) {
+                auxint++;
+                if (auxint == 1) {
+                    auxint2 = i;
+                }
+            }
+        }
+        if (auxint == 1) {
+            System.out.println("Cliente encontrado.");
+        } else if (auxint > 1) {
+            System.out.println("Existe clientes com o mesmo nome, deve pesquisar pelo NIF!");
+            System.out.println("Introduza o NIF do cliente:");
+            auxlong = umLong();
+            auxint = 0;
+            if (l.verificarCliente(auxlong) == true) {
+                for (int i = 0; i < l.getClientes().size(); i++) {
+                    if (l.getClientes().get(i).getNIF() == auxlong) {
+                        auxint++;
+                        if (auxint == 1) {
+                            auxint2 = i;
                         }
                     }
-                    if (auxint == 1) {
-                        System.out.print("Introduza a nova morada:");
+                }
+            }
+            if (auxint == 1) {
+                System.out.println("Cliente encontrado.");
+            } else {
+                System.out.println("O cliente não foi encontrado!");
+            }
+        } else {
+            System.out.println("O cliente não foi encontrado!");
+        }
+
+        if (auxint == 1) {
+            int opcao = menu8();
+            while (opcao != 0) {
+                switch (opcao) {
+                    case 1:
+                        System.out.print("Introduza modificação:");
+                        auxstring = umaString();
+                        l.getClientes().get(auxint2).setNome(auxstring);
+                        System.out.println("Modificação feita com sucesso.");
+                        break;
+                    case 2:
+                        System.out.print("Introduza modificação:");
+                        auxstring = umaString();
+                        l.getClientes().get(auxint2).setDatanascimento(auxstring);
+                        System.out.println("Modificação feita com sucesso.");
+                        break;
+                    case 3:
+                        System.out.print("Introduza modificação:");
+                        auxint = umInt();
+                        l.getClientes().get(auxint2).setNIF(auxint);
+                        System.out.println("Modificação feita com sucesso.");
+                        break;
+                    case 4:
+                        System.out.print("Introduza modificação:");
                         auxstring = umaString();
                         l.getClientes().get(auxint2).setMorada(auxstring);
-                        System.out.println("Morada modificada com sucesso!");
-
-                    } else if (auxint > 1) {
-                        System.out.println("Existe clientes com o mesmo nome, deve pesquisar pelo NIF!");
-                    } else {
-                        System.out.println("O cliente não foi encontrado!");
-                    }
-                    break;
-                case 2:
-                    System.out.print("Introduza o NIF do cliente:");
-                    auxlong = umLong();
-                    if (l.verificarCliente(auxlong) == true) {
-                        for (int i = 0; i < l.getClientes().size(); i++) {
-                            if (l.getClientes().get(i).getNIF() == auxlong) {
-                                System.out.print("Introduza a nova morada:");
-                                auxstring = umaString();
-                                l.getClientes().get(i).setMorada(auxstring);
-                                System.out.println("Morada modificada com sucesso!");
-                                break;
-                            }
-                        }
-                    } else {
-                        System.out.println("O NIF do cliente não foi encontrado!");
-                    }
-                    break;
+                        System.out.println("Modificação feita com sucesso.");
+                        break;
+                    case 5:
+                        System.out.print("Introduza modificação:");
+                        auxlong = umLong();
+                        l.getClientes().get(auxint2).setContacto(auxlong);
+                        System.out.println("Modificação feita com sucesso.");
+                        break;
+                }
+                opcao = menu8();
             }
-            opcao = menu8();
         }
         return l.getClientes();
     }
@@ -279,7 +435,6 @@ public class LojaDeTelemoveis {
                     if (auxint == 1) {
                         l.removerCliente(auxlong);
                         System.out.println("Cliente removido com sucesso!");
-
                     } else if (auxint > 1) {
                         System.out.println("Existe clientes com o mesmo nome, deve pesquisar pelo NIF!");
                     } else {

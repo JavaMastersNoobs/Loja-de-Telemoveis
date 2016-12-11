@@ -6,64 +6,75 @@ import java.util.ArrayList;
 public class Cliente implements Serializable {
 
     private String nome;
-    private int idade;
+    private String datanascimento;
     private long NIF;
     private String morada;
+    private long contacto;
     private ArrayList<Factura> facturas;
-    
+
     public Cliente() {
         this.nome = "";
-        this.idade = 0;
+        this.datanascimento = "";
         this.NIF = 0;
         this.morada = "";
+        this.contacto = 0;
         facturas = new ArrayList<Factura>();
     }
 
-    public Cliente(String nome, int idade, long NIF, String morada) {
+    public Cliente(String nome, String datanascimento, long NIF, String morada, long contacto) {
         this.nome = nome;
-        this.idade = idade;
+        this.datanascimento = datanascimento;
         this.NIF = NIF;
         this.morada = morada;
+        this.contacto = contacto;
         facturas = new ArrayList<Factura>();
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public int getIdade() {
-        return idade;
-    }
-
-    public long getNIF() {
-        return NIF;
-    }
-
-    public String getMorada() {
-        return morada;
-    }
-
-    public ArrayList<Factura> getFacturas() {
-        return facturas;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public void setIdade(int idade) {
-        this.idade = idade;
+    public String getNome() {
+        return nome;
+    }
+
+    public void setDatanascimento(String datanascimento) {
+        this.datanascimento = datanascimento;
+    }
+
+    public String getDatanascimento() {
+        return datanascimento;
     }
 
     public void setNIF(long NIF) {
         this.NIF = NIF;
     }
 
+    public long getNIF() {
+        return NIF;
+    }
+
     public void setMorada(String morada) {
         this.morada = morada;
     }
 
+    public String getMorada() {
+        return morada;
+    }
+
+    public void setContacto(long contacto) {
+        this.contacto = contacto;
+    }
+
+    public long getContacto() {
+        return contacto;
+    }
+
     public void setFacturas(ArrayList<Factura> f) {
         facturas = (ArrayList<Factura>) f.clone();
+    }
+
+    public ArrayList<Factura> getFacturas() {
+        return facturas;
     }
 }
