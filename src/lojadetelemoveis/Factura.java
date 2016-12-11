@@ -8,79 +8,49 @@ public class Factura {
     
     public static void main (String[] args) throws IOException 
     {
-        Produto p = new Produto();
-        Cliente c = new Cliente("nome", 19, 15121421, "Covilhã");       
-        print (c, p, 0, "");
-        String s = "10 de Dezembro de 2016";
-        getFactura (1002);
-        System.out.println (getVendas (s));
-        topVendas();
+        
     }
        
-    public static void  print (Cliente c, Produto p, int i, String t) throws IOException
+    public static void  print (Cliente c, ArrayList<Produto> p, ArrayList<Integer> quant) throws IOException
     {
-        String texto = t;
-        FileWriter arq = new FileWriter("C:\\Users\\Diogo Dias\\Desktop\\Loja-de-Telemoveis\\teste.txt", true);
+        String texto =""; 
+        FileWriter arq = new FileWriter("C:\\UBI\\factura.txt", true);
         PrintWriter gravarArq = new PrintWriter(arq);
         Data d = new Data();
         
-        switch (i) 
-        {
-            case 0:
                 texto += "================================================" + separator;
                 texto += "               LOJA DE TELEMÓVEIS               " + separator;
                 texto += "================================================" + separator;
                 texto += " Cliente: " + c.getNome() + separator;
-              /*  texto = " Data de Nascimento: " + c.getDatanascimento() + "\n";
-                texto += texto;
-                gravarArq.println(texto); */
+                texto += " Data de Nascimento: " + c.getDatanascimento() + "\n";
                 texto += " NIF: " + c.getNIF() + separator;
                 texto += " Morada: " + c.getMorada() + separator;
                 texto += "------------------------------------------------" + separator;
-                texto += " " + p.getMarca() + ", " + p.getModelo() + separator;
-                texto += "      " + p.getPreco() + separator;
-                texto += separator;
-                mais (c, p, texto);
-                addData(d.getData());
-                break;
-            case 1:
-                addData(d.getData());
-                texto += " " + p.getMarca() + ", " + p.getModelo() + separator;
-                texto += "      " + p.getPreco() + separator;
-                texto += separator;
-                mais (c, p, texto);
-                break;
-            case 2:
+                double total = 0.0;
+                for(int i = 0; i<p.size(); i++)
+                {
+                    texto += " " + p.get(i).getMarca() + ", " + p.get(i).getModelo() + separator;
+                    texto += "      " + (p.get(i).getPreco())*quant.get(i) + separator;
+                    texto += " Quantidade: "+quant.get(i) + separator;
+                    texto += separator;
+                    total +=(p.get(i).getPreco())*quant.get(i);
+                    //addData(d.getData());
+                }
+
                 texto += " TOTAL A PAGAR" + separator; 
-                texto += "      " + p.getPreco() + separator;
+                texto += "      " + total + separator;
                 texto += " IVA INCLUIDO" + separator;
                 texto += "------------------------------------------------" + separator;
                 texto += " DATA: " + d.getData() + separator;
-                texto += " ID da Factura: " + getID() + separator;
+                //texto += " ID da Factura: " + getID() + separator;
                 texto += separator;
                 gravarArq.format(texto);
                 System.out.print(texto);
                 arq.close();
-                break;
        }
-    }
     
-    public static void mais (Cliente c, Produto p, String t) throws IOException 
-    {
-        System.out.print ("Mais? (S ou N) --> "); 
-        Scanner keyboard = new Scanner(System.in);
-        String mais = keyboard.nextLine();
-        
-        if ("s".equals(mais) || "S".equals(mais))
-        {
-            Produto prod = new Produto();
-            print (c, prod, 1, t); 
-        }
-        else
-            print (c, p, 2, t);
-    }
     
-    public static void addData (String data) throws IOException
+    /*public static void addData (String data) throws IOException
     {
         String arquivo = "C:\\Users\\Diogo Dias\\Desktop\\Loja-de-Telemoveis\\datas.txt";
         String s = "";
@@ -241,6 +211,6 @@ public class Factura {
         }
         System.out.println("Data: " + S);
         System.out.println("Vendas: " + M);        
-    }
+    }*/
     
 }

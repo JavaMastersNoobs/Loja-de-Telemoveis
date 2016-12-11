@@ -16,7 +16,7 @@ import java.io.*;
 
 public class LojaDeTelemoveis {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.out.println("Bem vindo à loja de telemóveis\n\n");
         long auxlong;
         Produto p = new Produto();
@@ -82,7 +82,7 @@ public class LojaDeTelemoveis {
     }
     
     
-    public static Loja comprar(Loja l)
+    public static Loja comprar(Loja l) throws IOException
     {
         long auxlong;
         int auxint =0;
@@ -90,6 +90,7 @@ public class LojaDeTelemoveis {
         int opcao = menu3();
         ArrayList<Produto> compras = new ArrayList<Produto>();
         ArrayList<Integer> quantidade = new ArrayList<Integer> ();
+        Cliente c = null;
         while (opcao != 0) 
         {
             switch (opcao) 
@@ -103,6 +104,7 @@ public class LojaDeTelemoveis {
                     auxint = l.consultarCliente(auxstring);
                     if (auxint >=0) 
                     {
+                        c = (Cliente) l.getClientes().get(auxint).clone();
                         System.out.println("Cliente encontrado com sucesso!");
                     } 
                     else if(auxint == -1) 
@@ -113,7 +115,7 @@ public class LojaDeTelemoveis {
                         auxint = l.consultarCliente(auxlong);
                         if (auxint != -1) 
                         {
-                            
+                            c = (Cliente) l.getClientes().get(auxint).clone();
                             System.out.println("Cliente encontrado com sucesso!");
                         }
                         else
@@ -152,15 +154,28 @@ public class LojaDeTelemoveis {
                                 quantidade.add(auxint3);
                                 System.out.println("Adicionado a lista de compras!");
                             }
-                            else
+                            else if(l.getTelemovel().get(auxint2).getQuantity() == 0)
                             {
                                 System.out.println("Stock esgotado!");
+                            }
+                            else
+                            {
+                                while(l.getTelemovel().get(auxint2).getQuantity() < auxint3)
+                                {
+                                    System.out.println("Não há telemóveis suficientes.");
+                                    System.out.println("Quantidade disponível em stock:"+l.getTelemovel().get(auxint2).getQuantity());
+                                    System.out.print("Introduza outra quantidade:");
+                                    auxint3 = umInt();
+                                }
+                                l.getTelemovel().get(auxint2).descidaEstoque(auxint3);
+                                compras.add((Produto) l.getTelemovel().get(auxint2).clone());
+                                quantidade.add(auxint3);
+                                System.out.println("Adicionado a lista de compras!");
                             }
                         }
                         else
                         {
                             System.out.println("O identificador do telemóvel não foi encontrado!");
-                            break;
                         }
                         System.out.println("===============================================================");
                         System.out.println("1 - Comprar mais produtos");
@@ -180,6 +195,11 @@ public class LojaDeTelemoveis {
                         }
                     }
                     break;
+            }
+            //Emitir fatura
+            if (!compras.isEmpty())
+            {
+                Factura.print(c, compras, quantidade);
             }
             opcao = menu3();
         } 
@@ -427,7 +447,8 @@ public class LojaDeTelemoveis {
                 length = (long) (Math.log10(auxlong) + 1);
             }
             c.setNIF(auxlong);
-        } else {
+        } 
+        else {
             c.setNIF(auxlong);
         }
         System.out.println("Introduza o contacto:");
