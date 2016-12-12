@@ -161,7 +161,7 @@ public class Loja implements Serializable {
         return auxint;
     }
     
-    public int vendasDia(Data d) // quantidade de vendas num dia específico
+    public int vendasDia(Data d) // quantidade de vendas num dia específico.
     {
         int count = 0;
         for(int i=0; i<facturas.size(); i++)
