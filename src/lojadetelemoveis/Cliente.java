@@ -84,6 +84,7 @@ public class Cliente implements Serializable {
         return copia;
     }
     
+    
     public String toString()
     {
         String s = "";

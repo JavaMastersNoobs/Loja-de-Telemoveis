@@ -175,7 +175,8 @@ public class Produto implements Serializable {
         p.id = this.id;
         return p;
     }
-
+     
+     
     public String toString() {
         String s = "";
         s += "Marca:" + marca + "\n";

@@ -20,7 +20,7 @@ public class LojaDeTelemoveis {
         
         System.out.println("Bem vindo à loja de telemóveis\n\n");
         Loja l = new Loja("Telemóveis");
-        try //para ler o ficheiro
+        try //para ler o ficheiro.
         {
             ObjectInputStream is = new ObjectInputStream(new FileInputStream("teste.dat"));
             long ult = is.readLong();

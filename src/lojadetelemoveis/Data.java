@@ -7,6 +7,7 @@ import static lojadetelemoveis.Ler.umaString;
 public class Data implements Serializable {
     private Date date;
     
+    
     public Data()
     {
         date = new Date();

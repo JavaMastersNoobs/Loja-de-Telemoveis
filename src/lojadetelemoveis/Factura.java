@@ -87,7 +87,8 @@ public class Factura implements Serializable
             texto += "\n";
             total += (p.get(i).getPreco()) * quant.get(i);
         }
-
+        
+        
         texto += " TOTAL A PAGAR" + "\n";
         texto += "    " + total + "\n";
         texto += " IVA INCLUIDO" + "\n";

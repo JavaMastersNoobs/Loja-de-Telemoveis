@@ -176,7 +176,7 @@ public class Loja implements Serializable {
         }
         return count;
     }
-    public int vendasPeriodo(Data dinicio, Data dfim) //quantidade total de vendas num período
+    public int vendasPeriodo(Data dinicio, Data dfim) //quantidade total de vendas num período.
     {
         int count = 0;
         boolean b = dinicio.formatDate().before(dfim.formatDate());
