@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Cliente implements Serializable {
 
     private String nome;
-    private String datanascimento;
+    private Data datanascimento;
     private long NIF;
     private String morada;
     private long contacto;
@@ -14,14 +14,14 @@ public class Cliente implements Serializable {
 
     public Cliente() {
         this.nome = "";
-        this.datanascimento = "";
+        this.datanascimento = new Data();
         this.NIF = 0;
         this.morada = "";
         this.contacto = 0;
         facturas = new ArrayList<Factura>();
     }
 
-    public Cliente(String nome, String datanascimento, long NIF, String morada, long contacto) {
+    public Cliente(String nome, Data datanascimento, long NIF, String morada, long contacto) {
         this.nome = nome;
         this.datanascimento = datanascimento;
         this.NIF = NIF;
@@ -38,12 +38,12 @@ public class Cliente implements Serializable {
         return nome;
     }
 
-    public void setDatanascimento(String datanascimento) {
+    public void setDatanascimento(Data datanascimento) {
         this.datanascimento = datanascimento;
     }
 
     public String getDatanascimento() {
-        return datanascimento;
+        return datanascimento.getData();
     }
 
     public void setNIF(long NIF) {
@@ -88,7 +88,7 @@ public class Cliente implements Serializable {
     {
         String s = "";
         s += "Nome:" + nome + "\n";
-        s += "Idade:" + datanascimento + "\n";
+        s += "Data de nascimento:" + datanascimento.getData() + "\n";
         s += "NIF:" + NIF + "\n";
         s += "Morada:" + morada + "\n"; 
         s += "Contacto:"+contacto+"\n";
