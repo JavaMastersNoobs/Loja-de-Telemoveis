@@ -3,8 +3,8 @@ package lojadetelemoveis;
 import java.io.*;
 import java.util.*;
 
-public class Factura implements Serializable 
-{
+public class Factura implements Serializable {
+
     private static long ultimo = 0;
     private long id;
     private Data data;
@@ -12,8 +12,7 @@ public class Factura implements Serializable
     private ArrayList<Produto> p;
     private ArrayList<Integer> quant;
 
-    public Factura(Data data,Cliente c, ArrayList<Produto> p, ArrayList<Integer> quant) 
-    {
+    public Factura(Data data, Cliente c, ArrayList<Produto> p, ArrayList<Integer> quant) {
         ultimo++;
         this.id = ultimo;
         this.data = data;
@@ -38,23 +37,45 @@ public class Factura implements Serializable
         this.id = id;
     }
 
-    public void print() 
-    {
+    public String getData() {
+        return (data.getData());
+    }
+
+    public Date formatDate() {
+        return (data.formatDate());
+    }
+
+    public ArrayList<Produto> getProdutos() {
+        return p;
+    }
+
+    public void setProdutos(ArrayList<Produto> p) {
+        this.p = (ArrayList<Produto>) p.clone();
+    }
+
+    public ArrayList<Integer> getQuantidade() {
+        return quant;
+    }
+
+    public void setQuantidade(ArrayList<Integer> quant) {
+        this.quant = (ArrayList<Integer>) quant.clone();
+    }
+
+    public void print() {
         String texto = "";
         texto += "================================================\n";
         texto += "               LOJA DE TELEMÓVEIS               \n";
         texto += "================================================\n";
         texto += " Cliente: " + c.getNome() + "\n";
         texto += " Data de Nascimento: " + c.getDatanascimento() + "\n";
-        texto += " NIF: " + c.getNIF()+ "\n";
+        texto += " NIF: " + c.getNIF() + "\n";
         texto += " Morada: " + c.getMorada() + "\n";
         texto += "------------------------------------------------\n\n";
         double total = 0.0;
-        for (int i = 0; i < p.size(); i++) 
-        {
+        for (int i = 0; i < p.size(); i++) {
             texto += " " + p.get(i).getMarca() + ", " + p.get(i).getModelo() + "\n";
-            texto += " ID do telemóvel:" + p.get(i).getId();
-            texto += " " + (p.get(i).getPreco()) + "\n";
+            texto += " ID do telemóvel: " + p.get(i).getId() + "\n";
+            texto += " Preço: " + (p.get(i).getPreco()) + "\n";
             texto += " Quantidade: " + quant.get(i) + "\n";
             texto += "\n";
             total += (p.get(i).getPreco()) * quant.get(i);
@@ -69,6 +90,5 @@ public class Factura implements Serializable
         texto += "\n";
         System.out.print(texto);
     }
-    
-    
+
 }

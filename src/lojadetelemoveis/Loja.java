@@ -2,6 +2,7 @@ package lojadetelemoveis;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Loja implements Serializable {
 
@@ -158,5 +159,43 @@ public class Loja implements Serializable {
             }
         }
         return auxint;
+    }
+
+    public int vendasDia(Data d) // quantidade de vendas num dia específico.
+    {
+        int count = 0;
+        for (int i = 0; i < facturas.size(); i++) {
+            if (facturas.get(i).getData().equals(d.getData())) {
+                for (int j = 0; j < facturas.get(i).getQuantidade().size(); j++) {
+                    count += facturas.get(i).getQuantidade().get(j);
+                }
+            }
+        }
+        return count;
+    }
+
+    public int vendasPeriodo(Data dinicio, Data dfim) //quantidade total de vendas num período.
+    {
+        int count = 0;
+        boolean b = dinicio.formatDate().before(dfim.formatDate());
+        if (dinicio.getData().equals(dfim.getData())) {
+            for (int i = 0; i < facturas.size(); i++) {
+                if (dinicio.getData().equals(dfim.getData())) {
+                    for (int j = 0; j < facturas.get(i).getQuantidade().size(); j++) {
+                        count += facturas.get(i).getQuantidade().get(j);
+                    }
+                }
+            }
+        } else if (b == true) {
+            for (int i = 0; i < facturas.size(); i++) {
+                if ((facturas.get(i).formatDate().after(dinicio.formatDate()) && facturas.get(i).formatDate().before(dfim.formatDate()))
+                        || ((facturas.get(i).getData().equals(dinicio.getData())) || (facturas.get(i).getData().equals(dfim.getData())))) {
+                    for (int j = 0; j < facturas.get(i).getQuantidade().size(); j++) {
+                        count += facturas.get(i).getQuantidade().get(j);
+                    }
+                }
+            }
+        }
+        return count;
     }
 }
