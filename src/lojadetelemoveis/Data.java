@@ -1,13 +1,23 @@
 package lojadetelemoveis;
+import java.io.Serializable;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
-public class Data {
-    private final Date date = new Date();
-    String data = java.text.DateFormat.getDateInstance(DateFormat.LONG).format(date);
+import static lojadetelemoveis.Ler.umaString;
+public class Data implements Serializable {
+    private Date date;
     
+    public Data()
+    {
+        date = new Date();
+    }
+    public Data(Date d)
+    {
+        date = d;
+    }
     public String getData () 
     {
-        return (data);
+        return java.text.DateFormat.getDateInstance(DateFormat.SHORT).format(date);
     }
     
     public int nVendas (String d) 
@@ -15,4 +25,5 @@ public class Data {
         int n = 0;
         return (n);
     }
+    
 }
