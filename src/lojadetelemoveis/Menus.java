@@ -21,7 +21,8 @@ public class Menus {
         System.out.print("Introduza uma das opções:");
         int opcao = umInt();
         System.out.println("================================================================");
-        if (opcao < 0 || opcao > 10) {
+        if (opcao < 0 || opcao > 10) 
+        {
             System.out.println("Deve introduzir uma das opções listadas!");
         }
         return opcao;
@@ -32,6 +33,21 @@ public class Menus {
         System.out.println("================================================================");
         System.out.println("1 - Adicionar novo cliente");
         System.out.println("2 - Realizar compra");
+        System.out.println("0 - Voltar ao menu principal");
+        System.out.print("Introduza uma das opções:");
+        int opcao = umInt();
+        System.out.println("================================================================");
+        if (opcao < 0 || opcao > 2) {
+            System.out.println("Deve introduzir uma das opções listadas!");
+        }
+        return opcao;
+    }
+    
+    public static int menu4()
+    {
+        System.out.println("================================================================");
+        System.out.println("1 - Consultar factura pelo numero de identificador");
+        System.out.println("2 - Consutar factura através de um cliente");
         System.out.println("0 - Voltar ao menu principal");
         System.out.print("Introduza uma das opções:");
         int opcao = umInt();
