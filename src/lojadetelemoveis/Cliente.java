@@ -77,21 +77,20 @@ public class Cliente implements Serializable {
     public ArrayList<Factura> getFacturas() {
         return facturas;
     }
-    public Object clone()
-    {
+
+    public Object clone() {
         Cliente copia = new Cliente(this.nome, this.datanascimento, this.NIF, this.morada, this.contacto);
         copia.facturas = (ArrayList) this.facturas.clone();
         return copia;
     }
-    
-    public String toString()
-    {
+
+    public String toString() {
         String s = "";
         s += "Nome:" + nome + "\n";
         s += "Data de nascimento:" + datanascimento.getData() + "\n";
         s += "NIF:" + NIF + "\n";
-        s += "Morada:" + morada + "\n"; 
-        s += "Contacto:"+contacto+"\n";
+        s += "Morada:" + morada + "\n";
+        s += "Contacto:" + contacto + "\n";
         return s;
     }
 }
