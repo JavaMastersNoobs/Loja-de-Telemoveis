@@ -19,11 +19,10 @@ public class Data implements Serializable {
     {
         return java.text.DateFormat.getDateInstance(DateFormat.SHORT).format(date);
     }
-    
-    public int nVendas (String d) 
+    public Date formatDate() 
     {
-        int n = 0;
-        return (n);
+        return date;
     }
+    
     
 }

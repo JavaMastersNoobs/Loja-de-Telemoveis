@@ -37,6 +37,34 @@ public class Factura implements Serializable
     public void setId(long id) {
         this.id = id;
     }
+    
+    public String getData()
+    {
+        return (data.getData());
+    }
+    
+    public Date formatDate()
+    {
+        return (data.formatDate());
+    }
+    
+    public ArrayList<Produto> getProdutos()
+    {
+        return p;
+    }
+    public void setProdutos(ArrayList<Produto> p)
+    {
+        this.p = (ArrayList<Produto>) p.clone();
+    }
+    
+    public ArrayList<Integer> getQuantidade()
+    {
+        return quant;
+    }
+    public void setQuantidade(ArrayList<Integer> quant)
+    {
+        this.quant = (ArrayList<Integer>) quant.clone();
+    }
 
     public void print() 
     {
@@ -53,8 +81,8 @@ public class Factura implements Serializable
         for (int i = 0; i < p.size(); i++) 
         {
             texto += " " + p.get(i).getMarca() + ", " + p.get(i).getModelo() + "\n";
-            texto += " ID do telemóvel:" + p.get(i).getId();
-            texto += " " + (p.get(i).getPreco()) + "\n";
+            texto += " ID do telemóvel: " + p.get(i).getId() + "\n";
+            texto += " Preço: " + (p.get(i).getPreco()) + "\n";
             texto += " Quantidade: " + quant.get(i) + "\n";
             texto += "\n";
             total += (p.get(i).getPreco()) * quant.get(i);

@@ -17,11 +17,12 @@ public class Menus {
         System.out.println("8 - Adicionar um cliente");
         System.out.println("9 - Modficar dados do cliente");
         System.out.println("10 - Remover um cliente");
+        System.out.println("11 - Informações sobre vendas");
         System.out.println("0 - Sair");
         System.out.print("Introduza uma das opções:");
         int opcao = umInt();
         System.out.println("================================================================");
-        if (opcao < 0 || opcao > 10) 
+        if (opcao < 0 || opcao > 11) 
         {
             System.out.println("Deve introduzir uma das opções listadas!");
         }
@@ -47,7 +48,7 @@ public class Menus {
     {
         System.out.println("================================================================");
         System.out.println("1 - Consultar factura pelo numero de identificador");
-        System.out.println("2 - Consutar factura através de um cliente");
+        System.out.println("2 - Consutar factura através do nome de um cliente");
         System.out.println("0 - Voltar ao menu principal");
         System.out.print("Introduza uma das opções:");
         int opcao = umInt();
@@ -129,6 +130,22 @@ public class Menus {
             System.out.println("Deve introduzir uma das opções listadas!");
         }
         return opcao;
+    }
+    
+    public static int menu11()
+    {
+        System.out.println("===============================================================");
+        System.out.println("1 - Número de vendas num determinado dia");
+        System.out.println("2 - Número de vendas total num determinado período");
+        System.out.println("0 - Voltar ao menu principal");
+        System.out.print("Introduza uma das opções:");
+        int opcao = umInt();
+        System.out.println("===============================================================");
+        if (opcao < 0 || opcao > 2) {
+            System.out.println("Deve introduzir uma das opções listadas!");
+        }
+        return opcao;
+
     }
 }
 

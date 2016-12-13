@@ -103,6 +103,10 @@ public class Produto implements Serializable {
     public void setFrontal(String frontal) {
         this.frontal = frontal;
     }
+    
+    public String getFrontal() {
+        return frontal;
+    }
 
     public void setEcra(String ecra) {
         this.ecra = ecra;
