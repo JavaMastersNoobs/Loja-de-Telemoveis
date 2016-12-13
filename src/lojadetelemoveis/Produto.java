@@ -104,6 +104,10 @@ public class Produto implements Serializable {
         this.frontal = frontal;
     }
 
+    public String getFrontal() {
+        return frontal;
+    }
+
     public void setEcra(String ecra) {
         this.ecra = ecra;
     }
@@ -151,9 +155,8 @@ public class Produto implements Serializable {
     public long getId() {
         return id;
     }
-    
-     public Object clone()
-    {
+
+    public Object clone() {
         Produto p = new Produto();
         p.marca = this.marca;
         p.modelo = this.modelo;
@@ -185,7 +188,7 @@ public class Produto implements Serializable {
         s += "Câmara Frontal:" + frontal + "\n";
         s += "Ecrã:" + ecra + "\n";
         s += "Sistema Operativo:" + so + "\n";
-        s += "Preço:" + preco + "\n";
+        s += "Preço:" + preco + "\\u20AC" + "\n";
         s += "Quantidade:" + quantity + "\n";
         s += "Identificador:" + id + "\n";
         return s;
